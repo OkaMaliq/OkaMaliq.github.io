@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maliq Oka |  Portfolio</title>
+    <title>Maliq Oka | Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
@@ -12,18 +12,11 @@
         body { background-color: var(--bg); color: #a1a1aa; font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; }
         .mono { font-family: 'JetBrains Mono', monospace; }
         
-        /* Futuristic Background Mesh */
         .mesh {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(circle at 50% 50%, #111 0%, #050505 100%);
             z-index: -1;
         }
-        .glow {
-            position: fixed; width: 40vw; height: 40vw; background: radial-gradient(circle, rgba(0, 242, 255, 0.05) 0%, transparent 70%);
-            filter: blur(80px); z-index: -1; animation: drift 20s infinite alternate;
-        }
-
-        @keyframes drift { from { transform: translate(-10%, -10%); } to { transform: translate(20%, 20%); } }
 
         .glass {
             background: rgba(255, 255, 255, 0.02);
@@ -35,7 +28,6 @@
             border-color: var(--accent);
             background: rgba(0, 242, 255, 0.04);
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px -10px rgba(0, 242, 255, 0.2);
         }
 
         .text-gradient {
@@ -46,116 +38,102 @@
 </head>
 <body>
     <div class="mesh"></div>
-    <div class="glow"></div>
 
     <nav class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center backdrop-blur-md border-b border-white/5">
-        <div class="flex items-center gap-2 group">
+        <a href="#home" class="flex items-center gap-2 group cursor-pointer">
             <div class="w-8 h-8 border-2 border-[#00f2ff] flex items-center justify-center rotate-45 group-hover:bg-[#00f2ff] transition-all">
                 <span class="text-white -rotate-45 font-bold group-hover:text-black">M</span>
             </div>
             <span class="mono text-white tracking-[0.3em] text-xs font-bold ml-2">MALIQ OKA</span>
-        </div>
+        </a>
         <div class="flex gap-8 text-[10px] uppercase tracking-[0.3em] mono hidden md:flex">
-            <a href="#about" class="hover:text-[#00f2ff] transition">Identity</a>
-            <a href="#projects" class="hover:text-[#00f2ff] transition">Prototypes</a>
+            <a href="#about" class="hover:text-[#00f2ff] transition">About</a>
+            <a href="#projects" class="hover:text-[#00f2ff] transition">Projects</a>
             <a href="#contact" class="hover:text-[#00f2ff] transition">Contact</a>
         </div>
     </nav>
 
-    <section class="min-h-screen flex flex-col justify-center items-center px-6 pt-20">
-        <div class="mono text-[#00f2ff] text-xs mb-6 tracking-[0.5em] uppercase opacity-70 animate-pulse">System Online // Portfolio V2.0</div>
-        <h1 class="text-6xl md:text-9xl font-black text-white text-center leading-none tracking-tighter mb-8">
-            DIGITAL <br> <span class="text-gradient">ARCHITECT</span>
+    <section id="home" class="min-h-screen flex flex-col justify-center items-center px-6 pt-20">
+        <div class="mono text-[#00f2ff] text-xs mb-6 tracking-[0.5em] uppercase opacity-70">Established 2024</div>
+        <h1 class="text-5xl md:text-8xl font-black text-white text-center leading-none tracking-tighter mb-8">
+            Maliq Oka <br> <span class="text-gradient">Portfolio</span>
         </h1>
         <p class="max-w-2xl text-center text-gray-400 text-lg md:text-xl mb-12 leading-relaxed">
-            I build high-performance web environments. With over <span class="text-white">40 prototypes</span> created and <span class="text-white">10 WooCommerce systems</span> deployed, I bridge the gap between concept and reality.
+            I have built over <span class="text-white font-bold">40 prototypes</span>, with <span class="text-white font-bold">10 specialized systems</span> on WooCommerce. Dedicated to creating seamless and user-friendly digital experiences.
         </p>
         <div class="flex gap-4">
-            <a href="#projects" class="px-10 py-4 bg-[#00f2ff] text-black font-bold uppercase text-xs tracking-widest hover:scale-105 transition shadow-[0_0_20px_rgba(0,242,255,0.3)]">View Prototypes</a>
-            <a href="mailto:maliq.oka123@gmail.com" class="px-10 py-4 glass text-white font-bold uppercase text-xs tracking-widest hover:bg-white/10 transition">Email Server</a>
+            <a href="#projects" class="px-10 py-4 bg-[#00f2ff] text-black font-bold uppercase text-xs tracking-widest hover:scale-105 transition">Explore Work</a>
+            <a href="mailto:maliq.oka123@gmail.com" class="px-10 py-4 glass text-white font-bold uppercase text-xs tracking-widest hover:bg-white/10 transition">Get In Touch</a>
         </div>
     </section>
 
     <section id="about" class="py-32 px-6 max-w-6xl mx-auto">
         <div class="grid md:grid-cols-2 gap-16 items-center">
             <div class="glass p-10 rounded-3xl">
-                <h2 class="mono text-[#00f2ff] text-xs mb-4 tracking-widest uppercase">Biometric Data</h2>
-                <h3 class="text-4xl font-bold text-white mb-6">Maliq Oka</h3>
+                <h2 class="mono text-[#00f2ff] text-xs mb-4 tracking-widest uppercase">Expertise</h2>
+                <h3 class="text-4xl font-bold text-white mb-6">About Me</h3>
                 <p class="text-gray-400 text-lg leading-relaxed mb-6">
-                    Specialized in user-friendly experiences and seamless e-commerce integration. My mission is to evolve simple ideas into complex, functional digital ecosystems.
+                    Specializing in conceptual prototypes and fully functional e-commerce websites. My work ranges from simple blog sites to complex WooCommerce deployments.
                 </p>
                 <div class="grid grid-cols-2 gap-6 mt-8">
                     <div class="border-l-2 border-[#00f2ff] pl-4">
                         <div class="text-2xl font-bold text-white">40+</div>
-                        <div class="mono text-[10px] uppercase">Prototypes</div>
+                        <div class="mono text-[10px] uppercase tracking-tighter">Prototypes Created</div>
                     </div>
                     <div class="border-l-2 border-[#00f2ff] pl-4">
-                        <div class="text-2xl font-bold text-white">10+</div>
-                        <div class="mono text-[10px] uppercase">WooCommerce</div>
+                        <div class="text-2xl font-bold text-white">10</div>
+                        <div class="mono text-[10px] uppercase tracking-tighter">WooCommerce Builds</div>
                     </div>
                 </div>
             </div>
-            <div class="flex justify-center">
-                <div class="w-64 h-64 border-2 border-dashed border-[#00f2ff]/30 rounded-full flex items-center justify-center animate-spin-slow">
-                     <i data-lucide="cpu" class="w-20 h-20 text-[#00f2ff] opacity-40"></i>
-                </div>
+            <div class="flex justify-center relative">
+                 <div class="w-64 h-64 border-2 border-dashed border-[#00f2ff]/20 rounded-full flex items-center justify-center animate-[spin_20s_linear_infinite]">
+                     <i data-lucide="layers" class="w-16 h-16 text-[#00f2ff] opacity-40"></i>
+                 </div>
             </div>
         </div>
     </section>
 
     <section id="projects" class="py-32 px-6 max-w-7xl mx-auto">
-        <div class="flex justify-between items-end mb-16">
-            <div>
-                <h2 class="mono text-[#00f2ff] text-sm mb-2 tracking-widest uppercase">Archive</h2>
-                <h3 class="text-5xl font-bold text-white tracking-tighter">Recent Deployments</h3>
-            </div>
-            <div class="text-right hidden md:block">
-                <span class="mono text-[10px] text-gray-600 uppercase">Filtered by: High Performance</span>
-            </div>
+        <div class="mb-16">
+            <h2 class="mono text-[#00f2ff] text-sm mb-2 tracking-widest uppercase">Archive</h2>
+            <h3 class="text-5xl font-bold text-white tracking-tighter">Featured Projects</h3>
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="glass p-6 rounded-2xl group cursor-pointer">
-                <div class="mono text-[10px] text-[#00f2ff] mb-4">01. WOOCOMMERCE</div>
-                <h4 class="text-xl font-bold text-white mb-4">ecotechsaunas.com</h4>
-                <p class="text-sm text-gray-500 mb-6">Full e-commerce ecosystem built for scale and luxury.</p>
-                <div class="flex items-center text-[#00f2ff] text-[10px] font-bold uppercase tracking-widest group-hover:gap-4 transition-all">
-                    Link Established <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
-                </div>
+            <div class="glass p-6 rounded-2xl group">
+                <div class="mono text-[10px] text-[#00f2ff] mb-4 uppercase">WooCommerce</div>
+                <h4 class="text-xl font-bold text-white mb-2">ecotechsaunas.com</h4>
+                <p class="text-sm text-gray-500 mb-6">Advanced e-commerce solution.</p>
+                <a href="https://maliqoka.wordpress.com/2025/03/18/ecotechsaunas-com-2/" class="flex items-center text-[#00f2ff] text-[10px] font-bold uppercase tracking-widest hover:translate-x-2 transition-transform">Details <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></a>
             </div>
 
-            <div class="glass p-6 rounded-2xl group cursor-pointer">
-                <div class="mono text-[10px] text-[#00f2ff] mb-4">02. BLOG SYSTEM</div>
-                <h4 class="text-xl font-bold text-white mb-4">thecrossliminalway.com</h4>
-                <p class="text-sm text-gray-500 mb-6">Strategic content platform with advanced typography.</p>
-                <div class="flex items-center text-[#00f2ff] text-[10px] font-bold uppercase tracking-widest group-hover:gap-4 transition-all">
-                    Link Established <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
-                </div>
+            <div class="glass p-6 rounded-2xl group">
+                <div class="mono text-[10px] text-[#00f2ff] mb-4 uppercase">Blog Site</div>
+                <h4 class="text-xl font-bold text-white mb-2">thecrossliminalway.com</h4>
+                <p class="text-sm text-gray-500 mb-6">Content-driven platform architecture.</p>
+                <a href="https://maliqoka.wordpress.com/2025/03/18/thecrossliminalway-com/" class="flex items-center text-[#00f2ff] text-[10px] font-bold uppercase tracking-widest hover:translate-x-2 transition-transform">Details <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></a>
             </div>
 
-            <div class="glass p-6 rounded-2xl group cursor-pointer">
-                <div class="mono text-[10px] text-[#00f2ff] mb-4">03. ONE-PAGE</div>
-                <h4 class="text-xl font-bold text-white mb-4">legaltech-llc.com</h4>
-                <p class="text-sm text-gray-500 mb-6">Ultra-clean professional corporate landing site.</p>
-                <div class="flex items-center text-[#00f2ff] text-[10px] font-bold uppercase tracking-widest group-hover:gap-4 transition-all">
-                    Link Established <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
-                </div>
+            <div class="glass p-6 rounded-2xl group">
+                <div class="mono text-[10px] text-[#00f2ff] mb-4 uppercase">One-Page Site</div>
+                <h4 class="text-xl font-bold text-white mb-2">legaltech-llc.com</h4>
+                <p class="text-sm text-gray-500 mb-6">Professional corporate layout.</p>
+                <a href="https://maliqoka.wordpress.com/2025/03/18/legaltech-llc-com/" class="flex items-center text-[#00f2ff] text-[10px] font-bold uppercase tracking-widest hover:translate-x-2 transition-transform">Details <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></a>
             </div>
 
-            <div class="glass p-6 rounded-2xl group cursor-pointer">
-                <div class="mono text-[10px] text-[#00f2ff] mb-4">04. 4-PAGE SITE</div>
-                <h4 class="text-xl font-bold text-white mb-4">elevatestrengths.com</h4>
-                <p class="text-sm text-gray-500 mb-6">Multi-level information architecture prototype.</p>
-                <div class="flex items-center text-[#00f2ff] text-[10px] font-bold uppercase tracking-widest group-hover:gap-4 transition-all">
-                    Link Established <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
-                </div>
+            <div class="glass p-6 rounded-2xl group">
+                <div class="mono text-[10px] text-[#00f2ff] mb-4 uppercase">4-Pages WebSite</div>
+                <h4 class="text-xl font-bold text-white mb-2">elevatestrengths.com</h4>
+                <p class="text-sm text-gray-500 mb-6">Multi-page business navigation.</p>
+                <a href="https://maliqoka.wordpress.com/2025/03/18/ecotechsaunas-com/" class="flex items-center text-[#00f2ff] text-[10px] font-bold uppercase tracking-widest hover:translate-x-2 transition-transform">Details <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></a>
             </div>
         </div>
     </section>
 
-    <footer id="contact" class="py-32 px-6 border-t border-white/5 bg-black/50">
+    <footer id="contact" class="py-24 px-6 border-t border-white/5">
         <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-4xl font-bold text-white mb-8 tracking-tighter">ESTABLISH CONNECTION</h2>
+            <h2 class="text-3xl font-bold text-white mb-8 tracking-tighter">Maliq Oka</h2>
             <div class="flex justify-center gap-12 mb-16">
                 <a href="mailto:maliq.oka123@gmail.com" class="text-gray-400 hover:text-[#00f2ff] transition flex flex-col items-center gap-2">
                     <i data-lucide="mail"></i>
@@ -163,11 +141,11 @@
                 </a>
                 <a href="https://maliqoka.wordpress.com" class="text-gray-400 hover:text-[#00f2ff] transition flex flex-col items-center gap-2">
                     <i data-lucide="globe"></i>
-                    <span class="mono text-[9px] uppercase tracking-widest">Legacy WP</span>
+                    <span class="mono text-[9px] uppercase tracking-widest">WordPress</span>
                 </a>
             </div>
-            <p class="text-[10px] text-gray-700 mono tracking-[0.8em] uppercase">
-                &copy; 2024 MALIQ OKA // ARCHITECTED FOR THE FUTURE
+            <p class="text-[10px] text-gray-700 mono tracking-[0.5em] uppercase">
+                &copy; 2024 MALIQ OKA // GITHUB PORTFOLIO
             </p>
         </div>
     </footer>
@@ -177,5 +155,3 @@
     </script>
 </body>
 </html>
-
-
