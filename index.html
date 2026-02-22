@@ -9,31 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <style>
         :root { --accent: #00f2ff; --bg: #050505; }
-        body { background-color: var(--bg); color: #a1a1aa; font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; }
+        body { background-color: var(--bg); color: #a1a1aa; font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
         .mono { font-family: 'JetBrains Mono', monospace; }
-        
-        .mesh {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 50%, #111 0%, #050505 100%);
-            z-index: -1;
-        }
-
-        .glass {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .glass:hover {
-            border-color: var(--accent);
-            background: rgba(0, 242, 255, 0.04);
-            transform: translateY(-5px);
-        }
-
-        .text-gradient {
-            background: linear-gradient(to right, #fff, var(--accent));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
+        .mesh { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, #111 0%, #050505 100%); z-index: -1; }
+        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.3s ease; }
+        .glass:hover { border-color: var(--accent); background: rgba(0, 242, 255, 0.04); transform: translateY(-5px); box-shadow: 0 10px 30px -10px rgba(0, 242, 255, 0.2); }
+        .text-gradient { background: linear-gradient(to right, #fff, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     </style>
 </head>
 <body>
@@ -48,7 +29,7 @@
         </a>
         <div class="flex gap-8 text-[10px] uppercase tracking-[0.3em] mono hidden md:flex">
             <a href="#about" class="hover:text-[#00f2ff] transition">About</a>
-            <a href="#projects" class="hover:text-[#00f2ff] transition">Projects</a>
+            <a href="#projects" class="hover:text-[#00f2ff] transition">Work</a>
             <a href="#contact" class="hover:text-[#00f2ff] transition">Contact</a>
         </div>
     </nav>
@@ -59,75 +40,189 @@
             Maliq Oka <br> <span class="text-gradient">Portfolio</span>
         </h1>
         <p class="max-w-2xl text-center text-gray-400 text-lg md:text-xl mb-12 leading-relaxed">
-            I have built over <span class="text-white font-bold">40 prototypes</span>, with <span class="text-white font-bold">10 specialized systems</span> on WooCommerce. Dedicated to creating seamless and user-friendly digital experiences.
+            Architecting digital experiences through <span class="text-white font-bold">40+ prototypes</span> and <span class="text-white font-bold">10 WooCommerce systems</span>. Transforming complex requirements into seamless, high-performance interfaces.
         </p>
         <div class="flex gap-4">
-            <a href="#projects" class="px-10 py-4 bg-[#00f2ff] text-black font-bold uppercase text-xs tracking-widest hover:scale-105 transition">Explore Work</a>
-            <a href="mailto:maliq.oka123@gmail.com" class="px-10 py-4 glass text-white font-bold uppercase text-xs tracking-widest hover:bg-white/10 transition">Get In Touch</a>
-        </div>
-    </section>
-
-    <section id="about" class="py-32 px-6 max-w-6xl mx-auto">
-        <div class="grid md:grid-cols-2 gap-16 items-center">
-            <div class="glass p-10 rounded-3xl">
-                <h2 class="mono text-[#00f2ff] text-xs mb-4 tracking-widest uppercase">Expertise</h2>
-                <h3 class="text-4xl font-bold text-white mb-6">About Me</h3>
-                <p class="text-gray-400 text-lg leading-relaxed mb-6">
-                    Specializing in conceptual prototypes and fully functional e-commerce websites. My work ranges from simple blog sites to complex WooCommerce deployments.
-                </p>
-                <div class="grid grid-cols-2 gap-6 mt-8">
-                    <div class="border-l-2 border-[#00f2ff] pl-4">
-                        <div class="text-2xl font-bold text-white">40+</div>
-                        <div class="mono text-[10px] uppercase tracking-tighter">Prototypes Created</div>
-                    </div>
-                    <div class="border-l-2 border-[#00f2ff] pl-4">
-                        <div class="text-2xl font-bold text-white">10</div>
-                        <div class="mono text-[10px] uppercase tracking-tighter">WooCommerce Builds</div>
-                    </div>
-                </div>
-            </div>
-            <div class="flex justify-center relative">
-                 <div class="w-64 h-64 border-2 border-dashed border-[#00f2ff]/20 rounded-full flex items-center justify-center animate-[spin_20s_linear_infinite]">
-                     <i data-lucide="layers" class="w-16 h-16 text-[#00f2ff] opacity-40"></i>
-                 </div>
-            </div>
+            <a href="#projects" class="px-10 py-4 bg-[#00f2ff] text-black font-bold uppercase text-xs tracking-widest hover:scale-105 transition">Initialize Grid</a>
+            <a href="mailto:maliq.oka123@gmail.com" class="px-10 py-4 glass text-white font-bold uppercase text-xs tracking-widest hover:bg-white/10 transition">Contact Node</a>
         </div>
     </section>
 
     <section id="projects" class="py-32 px-6 max-w-7xl mx-auto">
         <div class="mb-16">
-            <h2 class="mono text-[#00f2ff] text-sm mb-2 tracking-widest uppercase">Archive</h2>
-            <h3 class="text-5xl font-bold text-white tracking-tighter">Featured Projects</h3>
+            <h2 class="mono text-[#00f2ff] text-sm mb-2 tracking-widest uppercase">Deployment Archive</h2>
+            <h3 class="text-5xl font-bold text-white tracking-tighter">Work History</h3>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="glass p-6 rounded-2xl group">
-                <div class="mono text-[10px] text-[#00f2ff] mb-4 uppercase">WooCommerce</div>
-                <h4 class="text-xl font-bold text-white mb-2">ecotechsaunas.com</h4>
-                <p class="text-sm text-gray-500 mb-6">Advanced e-commerce solution.</p>
-                <a href="https://maliqoka.wordpress.com/2025/03/18/ecotechsaunas-com-2/" class="flex items-center text-[#00f2ff] text-[10px] font-bold uppercase tracking-widest hover:translate-x-2 transition-transform">Details <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></a>
-            </div>
-
-            <div class="glass p-6 rounded-2xl group">
-                <div class="mono text-[10px] text-[#00f2ff] mb-4 uppercase">Blog Site</div>
-                <h4 class="text-xl font-bold text-white mb-2">thecrossliminalway.com</h4>
-                <p class="text-sm text-gray-500 mb-6">Content-driven platform architecture.</p>
-                <a href="https://maliqoka.wordpress.com/2025/03/18/thecrossliminalway-com/" class="flex items-center text-[#00f2ff] text-[10px] font-bold uppercase tracking-widest hover:translate-x-2 transition-transform">Details <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></a>
-            </div>
-
-            <div class="glass p-6 rounded-2xl group">
-                <div class="mono text-[10px] text-[#00f2ff] mb-4 uppercase">One-Page Site</div>
-                <h4 class="text-xl font-bold text-white mb-2">legaltech-llc.com</h4>
-                <p class="text-sm text-gray-500 mb-6">Professional corporate layout.</p>
-                <a href="https://maliqoka.wordpress.com/2025/03/18/legaltech-llc-com/" class="flex items-center text-[#00f2ff] text-[10px] font-bold uppercase tracking-widest hover:translate-x-2 transition-transform">Details <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></a>
-            </div>
-
-            <div class="glass p-6 rounded-2xl group">
-                <div class="mono text-[10px] text-[#00f2ff] mb-4 uppercase">4-Pages WebSite</div>
-                <h4 class="text-xl font-bold text-white mb-2">elevatestrengths.com</h4>
-                <p class="text-sm text-gray-500 mb-6">Multi-page business navigation.</p>
-                <a href="https://maliqoka.wordpress.com/2025/03/18/ecotechsaunas-com/" class="flex items-center text-[#00f2ff] text-[10px] font-bold uppercase tracking-widest hover:translate-x-2 transition-transform">Details <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></a>
-            </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            <a href="https://ecotechsaunas.com" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Eco-Tech Saunas</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">ecotechsaunas.com</p>
+            </a>
+            <a href="https://thecrossliminalway.com" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">The Crossliminal Way</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">thecrossliminalway.com</p>
+            </a>
+            <a href="https://legaltech-llc.com" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Legaltech LLC</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">legaltech-llc.com</p>
+            </a>
+            <a href="https://elevatestrengths.com" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Elevate Strengths</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">elevatestrengths.com</p>
+            </a>
+            <a href="https://aboveallecoclean.com" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Above All Eco Clean</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">aboveallecoclean.com</p>
+            </a>
+            <a href="https://ahtranscripts.com" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Ahtran Scripts</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">ahtranscripts.com</p>
+            </a>
+            <a href="https://allgreenergy.ca" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">All Green Energy</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">allgreenergy.ca</p>
+            </a>
+            <a href="https://allprobeenvironmental.com" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">AllProbe Environmental</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">allprobeenvironmental.com</p>
+            </a>
+            <a href="https://arcwealthoptions.ca" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">ARC Wealth Options</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">arcwealthoptions.ca</p>
+            </a>
+            <a href="https://ateliereastdesign.com" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Atelier East Design</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">ateliereastdesign.com</p>
+            </a>
+            <a href="https://ausilon.com" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Ausilon</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">ausilon.com</p>
+            </a>
+            <a href="https://besthairextensions.com" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">BEST HAIR EXTENSION</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">besthairextensions.com</p>
+            </a>
+            <a href="https://brucecampbellauthor.com" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Bruce Campbell Author</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">brucecampbellauthor.com</p>
+            </a>
+            <a href="https://catapultsearch.com" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">CATAPULT</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">catapultsearch.com</p>
+            </a>
+            <a href="https://torontocameramanservices.com" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Toronto Cameraman</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">torontocameraman.com</p>
+            </a>
+            <a href="https://daretorisefoundation.org" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Dare to Rise</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">daretorisefoundation.org</p>
+            </a>
+            <a href="https://delisledentalsk.ca" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Delisle Dental</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">delisledentalsk.ca</p>
+            </a>
+            <a href="https://doctorshub.ca" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Doctors Hub</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">doctorshub.ca</p>
+            </a>
+            <a href="https://factorten.com" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Factor Ten</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">factorten.com</p>
+            </a>
+            <a href="https://freedomprosthetics.ca" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Freedom Prosthetics</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">freedomprosthetics.ca</p>
+            </a>
+            <a href="https://gymmississauga.com" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Gymnastics Mississauga</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">gymmississauga.com</p>
+            </a>
+            <a href="https://hampdendinerpa.com" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Hampden Diner</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">hampdendinerpa.com</p>
+            </a>
+            <a href="https://huntervalleycheese.com.au" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Hunter Valley Cheese</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">huntervalleycheese.com.au</p>
+            </a>
+            <a href="https://iconickinc.com" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">ICONICK Project Group</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">iconickinc.com</p>
+            </a>
+            <a href="https://jayrmemorials.com" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Jayr Memorials</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">jayrmemorials.com</p>
+            </a>
+            <a href="https://larcamachining.com" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Larca Machining</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">larcamachining.com</p>
+            </a>
+            <a href="https://lestreizeinc.org" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Les Treize, Inc.</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">lestreizeinc.org</p>
+            </a>
+            <a href="https://losttimemanagement.com" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Lost Time Management</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">losttimemanagement.com</p>
+            </a>
+            <a href="https://mathisoncapital.ca" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Mathison Capital</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">mathisoncapital.ca</p>
+            </a>
+            <a href="https://kentwriter.com" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Michael Kent Author</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">kentwriter.com</p>
+            </a>
+            <a href="https://nsrestore.ca" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">North Shore Disaster</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">nsrestore.ca</p>
+            </a>
+            <a href="https://palazzointeriors.com" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Palazzo Interiors</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">palazzointeriors.com</p>
+            </a>
+            <a href="https://pbgcanada.ca" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">PBG Canada</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">pbgcanada.ca</p>
+            </a>
+            <a href="https://perinatalpsychotherapy.ca" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Perinatal Psychotherapy</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">perinatalpsychotherapy.ca</p>
+            </a>
+            <a href="https://potash.eu" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Potash Global Strategy</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">potash.eu</p>
+            </a>
+            <a href="https://pfspumps.com" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Premier Fluid Systems</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">pfspumps.com</p>
+            </a>
+            <a href="https://re-lit.com.au" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Re-Lit</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">re-lit.com.au</p>
+            </a>
+            <a href="https://sportsnumbers.ca" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Sports Numbers</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">sportsnumbers.ca</p>
+            </a>
+            <a href="https://squirrelgullysaffron.com" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Squirrel Gully Saffron</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">squirrelgullysaffron.com</p>
+            </a>
+            <a href="https://quietcleanalliance.org" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Quiet Clean Alliance</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">quietcleanalliance.org</p>
+            </a>
+            <a href="https://unickelinsurance.com" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Unickel & Associates</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">unickelinsurance.com</p>
+            </a>
+            <a href="https://wilmheadstart.org" target="_blank" class="glass p-5 rounded-xl group block">
+                <h4 class="text-white font-bold mb-1">Wilmington Head Start</h4>
+                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">wilmheadstart.org</p>
+            </a>
         </div>
     </section>
 
@@ -145,7 +240,7 @@
                 </a>
             </div>
             <p class="text-[10px] text-gray-700 mono tracking-[0.5em] uppercase">
-                &copy; 2024 MALIQ OKA // GITHUB PORTFOLIO
+                &copy; 2024 MALIQ OKA // SYSTEMS DEPLOYED
             </p>
         </div>
     </footer>
