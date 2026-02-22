@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maliq Oka | 50+ Project Archive</title>
+    <title>Maliq Oka | Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
@@ -13,12 +13,8 @@
         .mono { font-family: 'JetBrains Mono', monospace; }
         .mesh { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, #111 0%, #050505 100%); z-index: -1; }
         .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.2s ease; }
-        .glass:hover { border-color: var(--accent); background: rgba(0, 242, 255, 0.04); transform: scale(1.02); box-shadow: 0 10px 30px -10px rgba(0, 242, 255, 0.2); }
+        .glass:hover { border-color: var(--accent); background: rgba(0, 242, 255, 0.04); transform: translateY(-3px); box-shadow: 0 10px 30px -10px rgba(0, 242, 255, 0.2); }
         .text-gradient { background: linear-gradient(to right, #fff, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
     </style>
 </head>
 <body>
@@ -29,127 +25,110 @@
             <div class="w-8 h-8 border-2 border-[#00f2ff] flex items-center justify-center rotate-45 group-hover:bg-[#00f2ff] transition-all">
                 <span class="text-white -rotate-45 font-bold group-hover:text-black">M</span>
             </div>
-            <span class="mono text-white tracking-[0.3em] text-xs font-bold ml-2">MALIQ OKA</span>
+            <span class="mono text-white tracking-[0.3em] text-xs font-bold ml-2 uppercase">Maliq Oka</span>
         </a>
         <div class="flex gap-8 text-[10px] uppercase tracking-[0.3em] mono hidden md:flex">
-            <a href="#home" class="hover:text-[#00f2ff] transition">Home</a>
-            <a href="#projects" class="hover:text-[#00f2ff] transition">Archive (50)</a>
-            <a href="mailto:maliq.oka123@gmail.com" class="hover:text-[#00f2ff] transition text-[#00f2ff]">Contact</a>
+            <a href="#about" class="hover:text-[#00f2ff] transition">About</a>
+            <a href="#projects" class="hover:text-[#00f2ff] transition">Work</a>
+            <a href="mailto:maliq.oka123@gmail.com" class="hover:text-[#00f2ff] transition">Contact</a>
         </div>
     </nav>
 
-    <section id="home" class="min-h-[80vh] flex flex-col justify-center items-center px-6 pt-32">
-        <div class="mono text-[#00f2ff] text-xs mb-6 tracking-[0.5em] uppercase opacity-70">Project Management Interface</div>
-        <h1 class="text-5xl md:text-8xl font-black text-white text-center leading-none tracking-tighter mb-8">
-            Maliq Oka <br> <span class="text-gradient">Portfolio</span>
+    <section id="home" class="min-h-[60vh] flex flex-col justify-center items-center px-6 pt-32">
+        <h1 class="text-6xl md:text-8xl font-black text-white text-center leading-none tracking-tighter mb-8">
+            Digital <br> <span class="text-gradient">Architect</span>
         </h1>
-        <p class="max-w-2xl text-center text-gray-400 text-lg md:text-xl mb-12 leading-relaxed">
-            Consolidated archive of <span class="text-white font-bold">50+ Digital Deployments</span>. 
-            From WooCommerce architectures to corporate prototypes, every node is listed in the master registry below.
+        <div class="w-16 h-1 bg-[#00f2ff] mb-8"></div>
+    </section>
+
+    <section id="about" class="py-20 px-6 max-w-4xl mx-auto text-center">
+        <h2 class="mono text-[#00f2ff] text-xs mb-6 tracking-[0.5em] uppercase">Welcome to My Portfolio</h2>
+        <p class="text-white text-xl md:text-2xl leading-relaxed font-light">
+            Hello, I’m <span class="font-bold text-[#00f2ff]">Maliq Oka</span>. Over the years, I’ve had the opportunity to work on over <span class="text-white font-bold">40 prototypes</span>, with <span class="text-white font-bold">10 of them built on WooCommerce</span>. My work ranges from conceptual prototypes to fully functional e-commerce websites, where I specialize in creating seamless, user-friendly experiences.
+        </p>
+        <p class="text-gray-400 mt-6 italic">
+            Please explore my portfolio to see the diverse range of projects I’ve worked on and to learn more about my skills and expertise.
         </p>
     </section>
 
-    <section id="projects" class="py-20 px-6 max-w-[90rem] mx-auto">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-12 border-l-2 border-[#00f2ff] pl-6">
-            <div>
-                <h2 class="mono text-[#00f2ff] text-sm mb-2 tracking-widest uppercase">Registry Index</h2>
-                <h3 class="text-4xl font-bold text-white tracking-tighter uppercase italic">Master Archive</h3>
-            </div>
-            <div class="mono text-[10px] text-gray-600 mt-4 md:mt-0 uppercase tracking-widest">
-                Total Nodes: 50 // Status: Verified
-            </div>
+    <section id="projects" class="py-20 px-6 max-w-[1500px] mx-auto">
+        <div class="mb-12 border-l-2 border-[#00f2ff] pl-6">
+            <h3 class="text-4xl font-bold text-white tracking-tighter uppercase">Project Archive</h3>
+            <p class="mono text-[10px] text-gray-500 mt-2 uppercase tracking-widest">50 Active Deployments</p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3">
             <script>
                 const projects = [
-                    { n: "Above All Eco Clean", l: "https://aboveallecoclean.hostpapadesign.com" },
-                    { n: "Ahtran scripts", l: "https://ahtranscripts.com" },
-                    { n: "All Green Energy", l: "https://allgreenergy.ca" },
-                    { n: "AllProbe Environmental", l: "https://allprobeenvironmental.com" },
-                    { n: "ARC Wealth Options", l: "https://arcwealthoptions.ca" },
-                    { n: "Atelier East Design", l: "https://ateliereastdesign.com" },
-                    { n: "Ausilon", l: "https://ausilon.hostpapadesign.com" },
-                    { n: "Best Hair Extension", l: "https://besthairextensions.hostpapadesign.com" },
-                    { n: "Bruce Campbell Author", l: "https://brucecampbellauthor.com" },
-                    { n: "Catapult Search", l: "https://catapultsearch.com" },
-                    { n: "Toronto Cameraman", l: "https://torontocameramanservices.com" },
-                    { n: "Dare to Rise", l: "https://daretorisefoundation.org" },
-                    { n: "Delisle Dental", l: "https://delisledentalsk.ca" },
-                    { n: "Doctors Hub", l: "https://doctorshub.ca" },
-                    { n: "Eco-Tech Saunas", l: "https://ecotechsaunas.com" },
-                    { n: "Elevate Strengths", l: "https://elevatestrengths.com" },
-                    { n: "Factor Ten", l: "https://factorten.hostpapadesign.com" },
-                    { n: "Freedom Prosthetics", l: "https://freedomprosthetics.ca" },
-                    { n: "Gymnastics Mississauga", l: "https://gymmississauga.hostpapadesign.com" },
-                    { n: "Hampden Diner", l: "https://hampdendinerpa.com" },
-                    { n: "Hunter Valley Cheese", l: "https://huntervalleycheese.com.au" },
-                    { n: "Iconick Inc", l: "https://iconickinc.com" },
-                    { n: "Jayr Memorials", l: "https://jayrmemorials.com" },
-                    { n: "Larca Machining", l: "https://larcamachining.com" },
-                    { n: "Legaltech LLC", l: "https://legaltech-llc.com" },
-                    { n: "Les Treize Inc", l: "https://lestreizeinc.org" },
-                    { n: "Lost Time Management", l: "https://losttimemanagement.com" },
-                    { n: "Mathison Capital", l: "https://mathisoncapital.ca" },
-                    { n: "Michael Kent Author", l: "https://kentwriter.com" },
-                    { n: "North Shore Disaster", l: "https://nsrestore.ca" },
-                    { n: "Palazzo Interiors", l: "https://palazzointeriors.com" },
-                    { n: "PBG Canada", l: "https://pbgcanada.ca" },
-                    { n: "Perinatal Psychotherapy", l: "https://perinatalpsychotherapy.ca" },
-                    { n: "Potash Global", l: "https://potash.eu" },
-                    { n: "Premier Fluid Systems", l: "https://pfspumps.com" },
-                    { n: "Re-Lit AU", l: "https://re-lit.com.au" },
-                    { n: "Roswell Community", l: "https://roswell.hostpapadesign.com" },
-                    { n: "Sports Numbers", l: "https://sportsnumbers.ca" },
-                    { n: "Saffron Specialists", l: "https://squirrelgullysaffron.com" },
-                    { n: "The Crossliminal Way", l: "https://thecrossliminalway.com" },
-                    { n: "Quiet Clean Alliance", l: "https://quietcleanalliance.org" },
-                    { n: "Unickel Insurance", l: "https://unickelinsurance.com" },
-                    { n: "Wilmington Head Start", l: "https://wilmheadstart.org" },
-                    { n: "Legacy Portfolio", l: "https://maliqoka.wordpress.com" },
-                    { n: "Prosthetics Hub", l: "https://freedomprosthetics.hostpapadesign.com" },
-                    { n: "Clean Tech Node", l: "https://aboveallecoclean.com" },
-                    { n: "Financial Engine", l: "https://arcwealth.hostpapadesign.com" },
-                    { n: "Author Portal 1", l: "https://brucecampbell.hostpapadesign.com" },
-                    { n: "Legal Design Lab", l: "https://legaltech.hostpapadesign.com" },
-                    { n: "Market Entry Potash", l: "https://potash.hostpapapresite.com" }
+                    { n: "Above All Eco Clean", u: "aboveallecoclean.hostpapadesign.com" },
+                    { n: "Ahtran scripts", u: "ahtranscripts.com" },
+                    { n: "All Green Energy", u: "allgreenergy.ca" },
+                    { n: "AllProbe Environmental Inc", u: "allprobeenvironmental.com" },
+                    { n: "ARC WEALTH OPTIONS INC.", u: "arcwealthoptions.ca" },
+                    { n: "Atelier East Design", u: "ateliereastdesign.com" },
+                    { n: "Ausilon", u: "ausilon.hostpapadesign.com" },
+                    { n: "BEST HAIR EXTENSION", u: "besthairextensions.hostpapadesign.com" },
+                    { n: "brucecampbellauthor", u: "brucecampbellauthor.com" },
+                    { n: "brucecampbellauthor (Dev)", u: "brucecampbellauthor.hostpapadesign.com" },
+                    { n: "CATAPULT", u: "catapultsearch.com" },
+                    { n: "Corporate Video Production", u: "torontocameramanservices2.hostpapadesign.com" },
+                    { n: "Dare to Rise", u: "daretorisefoundation.org" },
+                    { n: "Delisle Dental", u: "delisledentalsk.ca" },
+                    { n: "Doctors hub", u: "doctorshub.ca" },
+                    { n: "ecotechsaunas", u: "ecotechsaunas.com" },
+                    { n: "ecotechsaunas (Dev)", u: "ecotechsaunas.hostpapadesign.com" },
+                    { n: "Elevate Strengths", u: "elevatestrengths.com" },
+                    { n: "Elevate Strengths (Dev)", u: "elevatestrengths.hostpapadesign.com" },
+                    { n: "Factor Ten", u: "factorten.hostpapadesign.com" },
+                    { n: "Freedom Prosthetics Inc", u: "freedomprosthetics.ca" },
+                    { n: "Gymnastics Mississauga", u: "gymmississauga.hostpapadesign.com" },
+                    { n: "hampdendinerpa", u: "hampdendinerpa.com" },
+                    { n: "Hunter Valley Cheese", u: "huntervalleycheese.hostpapadesign.com" },
+                    { n: "ICONICK Project Group Inc.", u: "iconickinc.com" },
+                    { n: "jayrmemorials", u: "jayrmemorials.com" },
+                    { n: "Larca Custom Machining", u: "larcamachining.hostpapadesign.com" },
+                    { n: "legaltech-llc", u: "legaltech-llc.com" },
+                    { n: "Les Treize, Inc.", u: "lestreizeinc.org" },
+                    { n: "Lost time management", u: "losttimemanagement.com" },
+                    { n: "Mathison Capital", u: "mathisoncapital.ca" },
+                    { n: "Michael Kent Author", u: "kentwriter.com" },
+                    { n: "My Blog", u: "sewhelpful.hostpapadesign.com" },
+                    { n: "North Shore Disaster Repair", u: "nsrestore.ca" },
+                    { n: "Palazzo Interiors", u: "palazzointeriors.com" },
+                    { n: "PBGCanada", u: "pbgcanada.ca" },
+                    { n: "Perinatal Psychotherapy", u: "perinatalpsychotherapy.ca" },
+                    { n: "Potash Global Strategy", u: "potash.eu" },
+                    { n: "Premier Fluid Systems", u: "pfspumps.com" },
+                    { n: "Re-Lit", u: "re-lit.com.au" },
+                    { n: "Roswell Community", u: "roswell.hostpapadesign.com" },
+                    { n: "Sports Numbers", u: "sportsnumbers.ca" },
+                    { n: "Squirrel Gully Saffron", u: "squirrelgullysaffron.hostpapadesign.com" },
+                    { n: "sunsetpoint", u: "sunsetpoint.ca" },
+                    { n: "The Crossliminal Way", u: "thecrossliminalway.com" },
+                    { n: "NY Jewish Community", u: "besthighholydayservices.com" },
+                    { n: "The Quiet Clean Alliance", u: "quietcleanalliance.org" },
+                    { n: "Unickel & Associates Ins.", u: "unickelinsurance.com" },
+                    { n: "WILMINGTON HEAD START", u: "wilmheadstart.org" },
+                    { n: "Wolffmedia", u: "wolffmediagrp.com" }
                 ];
 
-                document.write(projects.map((p, i) => `
-                    <a href="${p.l}" target="_blank" class="glass p-4 rounded-lg block group relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="mono text-[8px] text-[#00f2ff]/50">NODE_${(i+1).toString().padStart(2, '0')}</span>
+                document.write(projects.map(p => `
+                    <a href="https://${p.u}" target="_blank" class="glass p-4 rounded-lg block group relative overflow-hidden">
+                        <div class="flex justify-between items-start mb-1">
+                            <h4 class="text-white font-bold text-[13px] group-hover:text-[#00f2ff] transition-colors truncate">${p.n}</h4>
                             <i data-lucide="external-link" class="w-3 h-3 text-[#00f2ff] opacity-0 group-hover:opacity-100 transition-opacity"></i>
                         </div>
-                        <h4 class="text-white font-bold text-xs truncate group-hover:text-[#00f2ff] transition-colors">${p.n}</h4>
-                        <p class="text-[8px] text-gray-600 mono mt-1 truncate">${p.l.replace('https://', '')}</p>
+                        <p class="text-[9px] text-gray-600 mono truncate lowercase">${p.u}</p>
                     </a>
                 `).join(''));
             </script>
         </div>
     </section>
 
-    <footer id="contact" class="py-24 px-6 border-t border-white/5 bg-black/40">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-3xl font-bold text-white mb-8 tracking-tighter">Connection Portal</h2>
-            <div class="flex justify-center gap-12 mb-16">
-                <a href="mailto:maliq.oka123@gmail.com" class="text-gray-400 hover:text-[#00f2ff] transition flex flex-col items-center gap-2">
-                    <i data-lucide="mail"></i>
-                    <span class="mono text-[9px] uppercase tracking-widest">Email</span>
-                </a>
-                <a href="https://maliqoka.wordpress.com" class="text-gray-400 hover:text-[#00f2ff] transition flex flex-col items-center gap-2">
-                    <i data-lucide="zap"></i>
-                    <span class="mono text-[9px] uppercase tracking-widest">WP Core</span>
-                </a>
-            </div>
-            <p class="text-[10px] text-gray-700 mono tracking-[0.5em] uppercase">
-                &copy; 2026 MALIQ OKA // DATA MIGRATION COMPLETE
-            </p>
-        </div>
+    <footer class="py-20 border-t border-white/5 text-center">
+        <p class="mono text-[10px] text-gray-700 uppercase tracking-[0.5em]">&copy; 2026 MALIQ OKA // ARCHIVE LOADED</p>
     </footer>
 
-    <script>
-        lucide.createIcons();
-    </script>
+    <script>lucide.createIcons();</script>
 </body>
 </html>
