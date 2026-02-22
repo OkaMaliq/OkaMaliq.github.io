@@ -13,17 +13,14 @@
         body { background-color: var(--bg); color: #a1a1aa; font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
         .mono { font-family: 'JetBrains Mono', monospace; }
         
-        /* 3D Canvas Background */
         #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
         
-        /* Neon UI Elements */
         .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .glass:hover { border-color: var(--accent); transform: scale(1.02) translateY(-5px); box-shadow: 0 20px 40px rgba(0, 242, 255, 0.15); }
         
         .text-glow { text-shadow: 0 0 20px rgba(0, 242, 255, 0.5); }
         .hero-gradient { background: linear-gradient(135deg, #fff 30%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
-        /* Custom scrollbar */
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-track { background: #050505; }
         ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
@@ -35,44 +32,53 @@
 <body>
     <div id="canvas-container"></div>
 
-    <nav class="fixed top-0 w-full z-50 px-10 py-6 flex justify-between items-center backdrop-blur-xl border-b border-white/10">
-        <a href="#home" class="flex items-center gap-3 group">
+    <nav class="fixed top-0 w-full z-[100] px-6 md:px-10 py-6 flex justify-between items-center backdrop-blur-xl border-b border-white/10">
+        <a href="#home" class="flex items-center gap-3 group z-[110]">
             <div class="w-10 h-10 border-2 border-[#00f2ff] flex items-center justify-center rotate-45 group-hover:bg-[#00f2ff] transition-all duration-500 shadow-[0_0_15px_rgba(0,242,255,0.4)]">
                 <span class="text-white -rotate-45 font-bold text-xl group-hover:text-black">M</span>
             </div>
             <span class="mono text-white tracking-[0.4em] text-sm font-bold">MALIQ OKA</span>
         </a>
-        <div class="flex gap-10 text-[11px] uppercase tracking-[0.3em] mono hidden md:flex">
+
+        <div class="hidden md:flex gap-10 text-[11px] uppercase tracking-[0.3em] mono">
             <a href="#about" class="hover:text-[#00f2ff] hover:text-glow transition">About</a>
             <a href="#projects" class="hover:text-[#00f2ff] hover:text-glow transition">Archive</a>
             <a href="#contact" class="px-5 py-2 border border-[#00f2ff] text-[#00f2ff] hover:bg-[#00f2ff] hover:text-black transition-all rounded-full">Hire Me</a>
         </div>
+
+        <button id="menu-toggle" class="md:hidden text-white z-[110] p-2">
+            <i data-lucide="menu" id="menu-icon"></i>
+        </button>
+
+        <div id="mobile-menu" class="fixed inset-0 bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center gap-8 translate-x-full transition-transform duration-500 md:hidden z-[100]">
+            <a href="#about" class="mobile-link text-3xl font-black text-white tracking-tighter hover:text-[#00f2ff]">ABOUT</a>
+            <a href="#projects" class="mobile-link text-3xl font-black text-white tracking-tighter hover:text-[#00f2ff]">WORK</a>
+            <a href="#contact" class="mobile-link text-3xl font-black text-[#00f2ff] tracking-tighter border border-[#00f2ff] px-8 py-2 rounded-full">HIRE ME</a>
+        </div>
     </nav>
 
-    <section id="home" class="min-h-screen flex flex-col justify-center items-center px-6 relative">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#00f2ff]/5 rounded-full blur-[120px]"></div>
-        <h2 class="mono text-[#00f2ff] text-sm tracking-[0.8em] mb-4 uppercase floating">Professional Portfolio</h2>
-        <h1 class="text-7xl md:text-[10rem] font-black text-white text-center leading-none tracking-tighter mb-6">
+    <section id="home" class="min-h-screen flex flex-col justify-center items-center px-6 relative text-center">
+        <h2 class="mono text-[#00f2ff] text-sm tracking-[0.8em] mb-4 uppercase floating">2026 Portfolio</h2>
+        <h1 class="text-6xl md:text-[10rem] font-black text-white leading-none tracking-tighter mb-6">
             FULL STACK<br><span class="hero-gradient text-glow">DEVELOPER</span>
         </h1>
-        <p class="max-w-xl text-center text-gray-400 text-lg leading-relaxed">
-            Specializing in high-performance Web Interfaces, WooCommerce Ecosystems, and Interactive Prototypes.
+        <p class="max-w-xl text-gray-400 text-lg md:text-xl leading-relaxed">
+            Crafting high-performance web experiences, WooCommerce ecosystems, and conceptual prototypes.
         </p>
     </section>
 
     <section id="about" class="py-40 px-6 relative">
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
             <div class="relative">
-                <div class="absolute -top-10 -left-10 text-[15rem] font-black text-white/[0.03] select-none">M</div>
-                <h2 class="text-6xl font-black text-white mb-8 tracking-tighter">ABOUT<br><span class="text-[#00f2ff]">STORY</span></h2>
+                <h2 class="text-6xl font-black text-white mb-8 tracking-tighter uppercase">About<br><span class="text-[#00f2ff]">Me</span></h2>
                 <div class="w-24 h-2 bg-[#00f2ff] mb-8 shadow-[0_0_15px_rgba(0,242,255,0.5)]"></div>
             </div>
             <div class="space-y-6">
-                <p class="text-3xl text-white font-light leading-snug">
-                    Hello, I’m <span class="font-bold text-[#00f2ff]">Maliq Oka</span>. Over the years, I’ve built over <span class="text-white underline decoration-[#00f2ff]">40 prototypes</span>.
+                <p class="text-2xl md:text-3xl text-white font-light leading-snug">
+                    Hello, I’m <span class="font-bold text-[#00f2ff]">Maliq Oka</span>. Over the years, I’ve had the opportunity to build over <span class="text-white underline decoration-[#00f2ff]">40 prototypes</span>.
                 </p>
                 <p class="text-xl text-gray-400 leading-relaxed">
-                    With 10 of my core builds operating on <strong>WooCommerce</strong>, I bridge the gap between conceptual design and high-conversion e-commerce. I specialize in crafting user-centric environments that don't just look good—they perform.
+                    With 10 of these builds specialized in <strong>WooCommerce</strong>, I focus on creating seamless, user-friendly experiences. From e-commerce to custom digital environments, I specialize in bridging technology with design.
                 </p>
             </div>
         </div>
@@ -80,14 +86,9 @@
 
     <section id="projects" class="py-40 px-6 bg-white/[0.01]">
         <div class="max-w-[1500px] mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-6">
-                <div>
-                    <h3 class="text-5xl font-black text-white tracking-tighter">WORK ARCHIVE</h3>
-                    <p class="mono text-xs text-[#00f2ff] mt-4 uppercase tracking-[0.4em]">50 verified deployments</p>
-                </div>
-                <div class="text-right hidden md:block">
-                    <span class="text-8xl font-black text-white/[0.05]">2026</span>
-                </div>
+            <div class="mb-20 text-center">
+                <h3 class="text-5xl font-black text-white tracking-tighter uppercase">Work Archive</h3>
+                <p class="mono text-xs text-[#00f2ff] mt-4 uppercase tracking-[0.4em]">50 Verified Nodes</p>
             </div>
             <div id="project-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
                 </div>
@@ -97,11 +98,8 @@
     <section id="contact" class="py-40 px-6 max-w-7xl mx-auto">
         <div class="grid lg:grid-cols-2 gap-16">
             <div class="space-y-12">
-                <div>
-                    <h3 class="text-6xl font-black text-white tracking-tighter mb-4">LET'S<br><span class="text-[#00f2ff]">CONNECT</span></h3>
-                    <p class="text-gray-400 text-lg">Currently available for freelance opportunities and full-stack collaborations.</p>
-                </div>
-
+                <h3 class="text-6xl font-black text-white tracking-tighter mb-4 uppercase">Let's<br><span class="text-[#00f2ff]">Connect</span></h3>
+                
                 <div class="space-y-8">
                     <div class="flex items-center gap-6 group">
                         <div class="w-14 h-14 glass rounded-2xl flex items-center justify-center text-[#00f2ff] group-hover:bg-[#00f2ff] group-hover:text-black transition-all">
@@ -112,7 +110,6 @@
                             <p class="text-white text-lg">Berlin, Germany</p>
                         </div>
                     </div>
-
                     <div class="flex items-center gap-6 group">
                         <div class="w-14 h-14 glass rounded-2xl flex items-center justify-center text-[#00f2ff] group-hover:bg-[#00f2ff] group-hover:text-black transition-all">
                             <i data-lucide="mail"></i>
@@ -122,7 +119,6 @@
                             <p class="text-white text-lg">maliq.oka123@gmail.com</p>
                         </div>
                     </div>
-
                     <div class="flex items-center gap-6 group">
                         <div class="w-14 h-14 glass rounded-2xl flex items-center justify-center text-[#00f2ff] group-hover:bg-[#00f2ff] group-hover:text-black transition-all">
                             <i data-lucide="phone"></i>
@@ -135,31 +131,24 @@
                 </div>
             </div>
 
-            <div class="glass p-10 md:p-14 rounded-[2rem] relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-32 h-32 bg-[#00f2ff]/10 blur-[50px]"></div>
-                <form id="form" class="space-y-6 relative z-10">
+            <div class="glass p-10 md:p-14 rounded-[2rem]">
+                <form id="form" class="space-y-6">
                     <input type="hidden" name="access_key" value="8ced933c-0914-46d5-aabc-a559e61de0b0">
-                    
-                    <div class="space-y-2">
-                        <label class="mono text-[10px] uppercase tracking-widest text-[#00f2ff]">Identification</label>
-                        <input type="text" name="name" required placeholder="Full Name" 
-                               class="w-full bg-white/5 border border-white/10 p-5 rounded-xl text-white focus:border-[#00f2ff] outline-none transition-all">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="mono text-[10px] uppercase tracking-widest text-[#00f2ff]">Name</label>
+                            <input type="text" name="name" required class="w-full bg-white/5 border border-white/10 p-4 rounded-xl text-white focus:border-[#00f2ff] outline-none">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="mono text-[10px] uppercase tracking-widest text-[#00f2ff]">Email</label>
+                            <input type="email" name="email" required class="w-full bg-white/5 border border-white/10 p-4 rounded-xl text-white focus:border-[#00f2ff] outline-none">
+                        </div>
                     </div>
-                    
                     <div class="space-y-2">
-                        <label class="mono text-[10px] uppercase tracking-widest text-[#00f2ff]">Digital Address</label>
-                        <input type="email" name="email" required placeholder="Email Address" 
-                               class="w-full bg-white/5 border border-white/10 p-5 rounded-xl text-white focus:border-[#00f2ff] outline-none transition-all">
+                        <label class="mono text-[10px] uppercase tracking-widest text-[#00f2ff]">Project Message</label>
+                        <textarea name="message" rows="4" required class="w-full bg-white/5 border border-white/10 p-4 rounded-xl text-white focus:border-[#00f2ff] outline-none"></textarea>
                     </div>
-
-                    <div class="space-y-2">
-                        <label class="mono text-[10px] uppercase tracking-widest text-[#00f2ff]">Message Brief</label>
-                        <textarea name="message" rows="4" required placeholder="How can I help with your project?" 
-                                  class="w-full bg-white/5 border border-white/10 p-5 rounded-xl text-white focus:border-[#00f2ff] outline-none transition-all"></textarea>
-                    </div>
-
-                    <button type="submit" id="submit-btn" 
-                            class="w-full py-6 bg-[#00f2ff] text-black font-black uppercase tracking-[0.2em] text-xs hover:shadow-[0_0_30px_rgba(0,242,255,0.4)] transition-all transform active:scale-95 rounded-xl">
+                    <button type="submit" id="submit-btn" class="w-full py-6 bg-[#00f2ff] text-black font-black uppercase tracking-[0.2em] text-xs hover:shadow-[0_0_30px_rgba(0,242,255,0.4)] transition-all rounded-xl">
                         Send Transmission
                     </button>
                 </form>
@@ -172,40 +161,62 @@
     </footer>
 
     <script>
-        // --- ADVANCED 3D BACKGROUND ---
+        // --- 3D ENGINE ---
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-        // Starfield
         const starGeo = new THREE.BufferGeometry();
         const starCoords = [];
-        for(let i=0; i<3000; i++) {
+        for(let i=0; i<4000; i++) {
             starCoords.push((Math.random()-0.5)*2000, (Math.random()-0.5)*2000, (Math.random()-0.5)*2000);
         }
         starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starCoords, 3));
-        const starMat = new THREE.PointsMaterial({ color: 0x00f2ff, size: 0.7, transparent: true, opacity: 0.4 });
+        const starMat = new THREE.PointsMaterial({ color: 0x00f2ff, size: 0.8, transparent: true, opacity: 0.5 });
         const stars = new THREE.Points(starGeo, starMat);
         scene.add(stars);
 
-        // Central Geometry
-        const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
-        const material = new THREE.MeshBasicMaterial({ color: 0x00f2ff, wireframe: true, transparent: true, opacity: 0.05 });
-        const torusKnot = new THREE.Mesh(geometry, material);
+        const torusKnot = new THREE.Mesh(
+            new THREE.TorusKnotGeometry(12, 4, 120, 20),
+            new THREE.MeshBasicMaterial({ color: 0x00f2ff, wireframe: true, transparent: true, opacity: 0.04 })
+        );
         scene.add(torusKnot);
-
-        camera.position.z = 50;
+        camera.position.z = 60;
 
         function animate() {
             requestAnimationFrame(animate);
-            stars.rotation.y += 0.0002;
+            stars.rotation.y += 0.0003;
             torusKnot.rotation.x += 0.001;
             torusKnot.rotation.y += 0.001;
             renderer.render(scene, camera);
         }
         animate();
+
+        // --- MOBILE MENU LOGIC ---
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        let isMenuOpen = false;
+
+        menuToggle.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            mobileMenu.style.transform = isMenuOpen ? 'translateX(0)' : 'translateX(100%)';
+            menuIcon.setAttribute('data-lucide', isMenuOpen ? 'x' : 'menu');
+            lucide.createIcons();
+            document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                isMenuOpen = false;
+                mobileMenu.style.transform = 'translateX(100%)';
+                menuIcon.setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+                document.body.style.overflow = '';
+            });
+        });
 
         // --- FORM LOGIC ---
         const form = document.getElementById('form');
@@ -218,19 +229,14 @@
             submitBtn.disabled = true;
 
             try {
-                const response = await fetch("https://api.web3forms.com/submit", {
-                    method: "POST",
-                    body: formData
-                });
-                if (response.ok) {
-                    alert("Transmission Successful. I'll get back to you soon.");
-                    form.reset();
-                } else { alert("Transmission Error. Please try again."); }
-            } catch (err) { alert("Digital link failed. Check your connection."); }
+                const response = await fetch("https://api.web3forms.com/submit", { method: "POST", body: formData });
+                if (response.ok) { alert("Success! Message sent."); form.reset(); } 
+                else { alert("Error sending."); }
+            } catch (err) { alert("Network error."); }
             finally { submitBtn.textContent = "SEND TRANSMISSION"; submitBtn.disabled = false; }
         });
 
-        // --- PROJECT DATA ---
+        // --- PROJECTS ---
         const projects = [
             { n: "Above All Eco Clean", u: "aboveallecoclean.hostpapadesign.com" },
             { n: "Ahtran scripts", u: "ahtranscripts.com" },
@@ -239,18 +245,18 @@
             { n: "ARC WEALTH OPTIONS", u: "arcwealthoptions.ca" },
             { n: "Atelier East Design", u: "ateliereastdesign.com" },
             { n: "Ausilon", u: "ausilon.hostpapadesign.com" },
-            { n: "BEST HAIR EXTENSION", u: "bessthairextensions.hostpapadesign.com" },
+            { n: "BEST HAIR EXTENSION", u: "besthairextensions.hostpapadesign.com" },
             { n: "brucecampbellauthor", u: "brucecampbellauthor.com" },
-            { n: "brucecampbell (Staging)", u: "brucecampbellauthor.hostpapadesign.com" },
+            { n: "brucecampbell staging", u: "brucecampbellauthor.hostpapadesign.com" },
             { n: "CATAPULT", u: "catapultsearch.com" },
             { n: "Corporate Video", u: "torontocameramanservices2.hostpapadesign.com" },
             { n: "Dare to Rise", u: "daretorisefoundation.org" },
             { n: "Delisle Dental", u: "delisledentalsk.ca" },
             { n: "Doctors hub", u: "doctorshub.ca" },
             { n: "ecotechsaunas", u: "ecotechsaunas.com" },
-            { n: "ecotechsaunas (Staging)", u: "ecotechsaunas.hostpapadesign.com" },
+            { n: "ecotechsaunas staging", u: "ecotechsaunas.hostpapadesign.com" },
             { n: "Elevate Strengths", u: "elevatestrengths.com" },
-            { n: "Elevate (Staging)", u: "elevatestrengths.hostpapadesign.com" },
+            { n: "Elevate staging", u: "elevatestrengths.hostpapadesign.com" },
             { n: "Factor Ten", u: "factorten.hostpapadesign.com" },
             { n: "Freedom Prosthetics", u: "freedomprosthetics.ca" },
             { n: "Gymnastics Mississauga", u: "gymmississauga.hostpapadesign.com" },
@@ -274,7 +280,7 @@
             { n: "Re-Lit", u: "re-lit.com.au" },
             { n: "Roswell Community", u: "roswell.hostpapadesign.com" },
             { n: "Sports Numbers", u: "sportsnumbers.ca" },
-            { n: "Squirrel Gully Saffron", u: "squirrelgullysaffron.hostpapadesign.com" },
+            { n: "Saffron Specialties", u: "squirrelgullysaffron.hostpapadesign.com" },
             { n: "sunsetpoint", u: "sunsetpoint.ca" },
             { n: "The Crossliminal Way", u: "thecrossliminalway.com" },
             { n: "Jewish Community", u: "besthighholydayservices.com" },
@@ -284,12 +290,9 @@
             { n: "Wolffmedia", u: "wolffmediagrp.com" }
         ];
 
-        const grid = document.getElementById('project-grid');
-        grid.innerHTML = projects.map(p => `
+        document.getElementById('project-grid').innerHTML = projects.map(p => `
             <a href="https://${p.u}" target="_blank" class="glass p-6 rounded-2xl block group relative">
-                <div class="mb-4 text-[#00f2ff]/30 group-hover:text-[#00f2ff] transition-colors">
-                    <i data-lucide="external-link" class="w-5 h-5"></i>
-                </div>
+                <i data-lucide="external-link" class="w-4 h-4 text-[#00f2ff]/30 group-hover:text-[#00f2ff] transition-colors mb-4"></i>
                 <h4 class="text-white font-bold text-xs mb-2 group-hover:text-[#00f2ff] transition-colors truncate uppercase">${p.n}</h4>
                 <p class="text-[9px] text-gray-600 mono truncate lowercase">${p.u}</p>
             </a>
@@ -305,4 +308,3 @@
     </script>
 </body>
 </html>
-
