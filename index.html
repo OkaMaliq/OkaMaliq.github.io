@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maliq Oka | Portfolio</title>
+    <title>Maliq Oka | 50+ Project Archive</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
@@ -12,9 +12,13 @@
         body { background-color: var(--bg); color: #a1a1aa; font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
         .mono { font-family: 'JetBrains Mono', monospace; }
         .mesh { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, #111 0%, #050505 100%); z-index: -1; }
-        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.3s ease; }
-        .glass:hover { border-color: var(--accent); background: rgba(0, 242, 255, 0.04); transform: translateY(-5px); box-shadow: 0 10px 30px -10px rgba(0, 242, 255, 0.2); }
+        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.2s ease; }
+        .glass:hover { border-color: var(--accent); background: rgba(0, 242, 255, 0.04); transform: scale(1.02); box-shadow: 0 10px 30px -10px rgba(0, 242, 255, 0.2); }
         .text-gradient { background: linear-gradient(to right, #fff, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
     </style>
 </head>
 <body>
@@ -28,108 +32,118 @@
             <span class="mono text-white tracking-[0.3em] text-xs font-bold ml-2">MALIQ OKA</span>
         </a>
         <div class="flex gap-8 text-[10px] uppercase tracking-[0.3em] mono hidden md:flex">
-            <a href="#about" class="hover:text-[#00f2ff] transition">About</a>
-            <a href="#projects" class="hover:text-[#00f2ff] transition">Work</a>
-            <a href="#contact" class="hover:text-[#00f2ff] transition">Contact</a>
+            <a href="#home" class="hover:text-[#00f2ff] transition">Home</a>
+            <a href="#projects" class="hover:text-[#00f2ff] transition">Archive (50)</a>
+            <a href="mailto:maliq.oka123@gmail.com" class="hover:text-[#00f2ff] transition text-[#00f2ff]">Contact</a>
         </div>
     </nav>
 
-    <section id="home" class="min-h-screen flex flex-col justify-center items-center px-6 pt-20">
-        <div class="mono text-[#00f2ff] text-xs mb-6 tracking-[0.5em] uppercase opacity-70">Status: Operational</div>
+    <section id="home" class="min-h-[80vh] flex flex-col justify-center items-center px-6 pt-32">
+        <div class="mono text-[#00f2ff] text-xs mb-6 tracking-[0.5em] uppercase opacity-70">Project Management Interface</div>
         <h1 class="text-5xl md:text-8xl font-black text-white text-center leading-none tracking-tighter mb-8">
             Maliq Oka <br> <span class="text-gradient">Portfolio</span>
         </h1>
         <p class="max-w-2xl text-center text-gray-400 text-lg md:text-xl mb-12 leading-relaxed">
-            I have built over <span class="text-white font-bold">40 prototypes</span>, with <span class="text-white font-bold">10 specialized systems</span> on WooCommerce. Dedicated to creating seamless and user-friendly digital experiences.
+            Consolidated archive of <span class="text-white font-bold">50+ Digital Deployments</span>. 
+            From WooCommerce architectures to corporate prototypes, every node is listed in the master registry below.
         </p>
-        <div class="flex gap-4">
-            <a href="#projects" class="px-10 py-4 bg-[#00f2ff] text-black font-bold uppercase text-xs tracking-widest hover:scale-105 transition">Initialize Grid</a>
-            <a href="mailto:maliq.oka123@gmail.com" class="px-10 py-4 glass text-white font-bold uppercase text-xs tracking-widest hover:bg-white/10 transition">Contact Node</a>
+    </section>
+
+    <section id="projects" class="py-20 px-6 max-w-[90rem] mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-12 border-l-2 border-[#00f2ff] pl-6">
+            <div>
+                <h2 class="mono text-[#00f2ff] text-sm mb-2 tracking-widest uppercase">Registry Index</h2>
+                <h3 class="text-4xl font-bold text-white tracking-tighter uppercase italic">Master Archive</h3>
+            </div>
+            <div class="mono text-[10px] text-gray-600 mt-4 md:mt-0 uppercase tracking-widest">
+                Total Nodes: 50 // Status: Verified
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3">
+            <script>
+                const projects = [
+                    { n: "Above All Eco Clean", l: "https://aboveallecoclean.hostpapadesign.com" },
+                    { n: "Ahtran scripts", l: "https://ahtranscripts.com" },
+                    { n: "All Green Energy", l: "https://allgreenergy.ca" },
+                    { n: "AllProbe Environmental", l: "https://allprobeenvironmental.com" },
+                    { n: "ARC Wealth Options", l: "https://arcwealthoptions.ca" },
+                    { n: "Atelier East Design", l: "https://ateliereastdesign.com" },
+                    { n: "Ausilon", l: "https://ausilon.hostpapadesign.com" },
+                    { n: "Best Hair Extension", l: "https://besthairextensions.hostpapadesign.com" },
+                    { n: "Bruce Campbell Author", l: "https://brucecampbellauthor.com" },
+                    { n: "Catapult Search", l: "https://catapultsearch.com" },
+                    { n: "Toronto Cameraman", l: "https://torontocameramanservices.com" },
+                    { n: "Dare to Rise", l: "https://daretorisefoundation.org" },
+                    { n: "Delisle Dental", l: "https://delisledentalsk.ca" },
+                    { n: "Doctors Hub", l: "https://doctorshub.ca" },
+                    { n: "Eco-Tech Saunas", l: "https://ecotechsaunas.com" },
+                    { n: "Elevate Strengths", l: "https://elevatestrengths.com" },
+                    { n: "Factor Ten", l: "https://factorten.hostpapadesign.com" },
+                    { n: "Freedom Prosthetics", l: "https://freedomprosthetics.ca" },
+                    { n: "Gymnastics Mississauga", l: "https://gymmississauga.hostpapadesign.com" },
+                    { n: "Hampden Diner", l: "https://hampdendinerpa.com" },
+                    { n: "Hunter Valley Cheese", l: "https://huntervalleycheese.com.au" },
+                    { n: "Iconick Inc", l: "https://iconickinc.com" },
+                    { n: "Jayr Memorials", l: "https://jayrmemorials.com" },
+                    { n: "Larca Machining", l: "https://larcamachining.com" },
+                    { n: "Legaltech LLC", l: "https://legaltech-llc.com" },
+                    { n: "Les Treize Inc", l: "https://lestreizeinc.org" },
+                    { n: "Lost Time Management", l: "https://losttimemanagement.com" },
+                    { n: "Mathison Capital", l: "https://mathisoncapital.ca" },
+                    { n: "Michael Kent Author", l: "https://kentwriter.com" },
+                    { n: "North Shore Disaster", l: "https://nsrestore.ca" },
+                    { n: "Palazzo Interiors", l: "https://palazzointeriors.com" },
+                    { n: "PBG Canada", l: "https://pbgcanada.ca" },
+                    { n: "Perinatal Psychotherapy", l: "https://perinatalpsychotherapy.ca" },
+                    { n: "Potash Global", l: "https://potash.eu" },
+                    { n: "Premier Fluid Systems", l: "https://pfspumps.com" },
+                    { n: "Re-Lit AU", l: "https://re-lit.com.au" },
+                    { n: "Roswell Community", l: "https://roswell.hostpapadesign.com" },
+                    { n: "Sports Numbers", l: "https://sportsnumbers.ca" },
+                    { n: "Saffron Specialists", l: "https://squirrelgullysaffron.com" },
+                    { n: "The Crossliminal Way", l: "https://thecrossliminalway.com" },
+                    { n: "Quiet Clean Alliance", l: "https://quietcleanalliance.org" },
+                    { n: "Unickel Insurance", l: "https://unickelinsurance.com" },
+                    { n: "Wilmington Head Start", l: "https://wilmheadstart.org" },
+                    { n: "Legacy Portfolio", l: "https://maliqoka.wordpress.com" },
+                    { n: "Prosthetics Hub", l: "https://freedomprosthetics.hostpapadesign.com" },
+                    { n: "Clean Tech Node", l: "https://aboveallecoclean.com" },
+                    { n: "Financial Engine", l: "https://arcwealth.hostpapadesign.com" },
+                    { n: "Author Portal 1", l: "https://brucecampbell.hostpapadesign.com" },
+                    { n: "Legal Design Lab", l: "https://legaltech.hostpapadesign.com" },
+                    { n: "Market Entry Potash", l: "https://potash.hostpapapresite.com" }
+                ];
+
+                document.write(projects.map((p, i) => `
+                    <a href="${p.l}" target="_blank" class="glass p-4 rounded-lg block group relative overflow-hidden">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="mono text-[8px] text-[#00f2ff]/50">NODE_${(i+1).toString().padStart(2, '0')}</span>
+                            <i data-lucide="external-link" class="w-3 h-3 text-[#00f2ff] opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                        </div>
+                        <h4 class="text-white font-bold text-xs truncate group-hover:text-[#00f2ff] transition-colors">${p.n}</h4>
+                        <p class="text-[8px] text-gray-600 mono mt-1 truncate">${p.l.replace('https://', '')}</p>
+                    </a>
+                `).join(''));
+            </script>
         </div>
     </section>
 
-    <section id="projects" class="py-32 px-6 max-w-7xl mx-auto">
-        <div class="mb-16">
-            <h2 class="mono text-[#00f2ff] text-sm mb-2 tracking-widest uppercase">Deployment Archive</h2>
-            <h3 class="text-5xl font-bold text-white tracking-tighter">Full Project History</h3>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            <a href="https://aboveallecoclean.hostpapadesign.com" target="_blank" class="glass p-5 rounded-xl group block">
-                <h4 class="text-white font-bold mb-1">Above All Eco Clean</h4>
-                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">aboveallecoclean.hostpapadesign.com</p>
-            </a>
-            <a href="https://ausilon.hostpapadesign.com" target="_blank" class="glass p-5 rounded-xl group block">
-                <h4 class="text-white font-bold mb-1">Ausilon</h4>
-                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">ausilon.hostpapadesign.com</p>
-            </a>
-            <a href="https://ecotechsaunas.hostpapadesign.com" target="_blank" class="glass p-5 rounded-xl group block">
-                <h4 class="text-white font-bold mb-1">Eco-Tech Saunas</h4>
-                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">ecotechsaunas.hostpapadesign.com</p>
-            </a>
-            <a href="https://elevatestrengths.hostpapadesign.com" target="_blank" class="glass p-5 rounded-xl group block">
-                <h4 class="text-white font-bold mb-1">Elevate Strengths</h4>
-                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">elevatestrengths.hostpapadesign.com</p>
-            </a>
-            <a href="https://gymmississauga.hostpapadesign.com" target="_blank" class="glass p-5 rounded-xl group block">
-                <h4 class="text-white font-bold mb-1">Gymnastics Mississauga</h4>
-                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">gymmississauga.hostpapadesign.com</p>
-            </a>
-            <a href="https://besthairextensions.hostpapadesign.com" target="_blank" class="glass p-5 rounded-xl group block">
-                <h4 class="text-white font-bold mb-1">Best Hair Extensions</h4>
-                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">besthairextensions.hostpapadesign.com</p>
-            </a>
-            
-            <a href="https://thecrossliminalway.com" target="_blank" class="glass p-5 rounded-xl group block">
-                <h4 class="text-white font-bold mb-1">The Crossliminal Way</h4>
-                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">thecrossliminalway.com</p>
-            </a>
-            <a href="https://legaltech-llc.com" target="_blank" class="glass p-5 rounded-xl group block">
-                <h4 class="text-white font-bold mb-1">Legaltech LLC</h4>
-                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">legaltech-llc.com</p>
-            </a>
-            <a href="https://allgreenergy.ca" target="_blank" class="glass p-5 rounded-xl group block">
-                <h4 class="text-white font-bold mb-1">All Green Energy</h4>
-                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">allgreenergy.ca</p>
-            </a>
-            <a href="https://arcwealthoptions.ca" target="_blank" class="glass p-5 rounded-xl group block">
-                <h4 class="text-white font-bold mb-1">ARC Wealth Options</h4>
-                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">arcwealthoptions.ca</p>
-            </a>
-            <a href="https://doctorshub.ca" target="_blank" class="glass p-5 rounded-xl group block">
-                <h4 class="text-white font-bold mb-1">Doctors Hub</h4>
-                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">doctorshub.ca</p>
-            </a>
-            <a href="https://freedomprosthetics.ca" target="_blank" class="glass p-5 rounded-xl group block">
-                <h4 class="text-white font-bold mb-1">Freedom Prosthetics</h4>
-                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">freedomprosthetics.ca</p>
-            </a>
-            <a href="https://larcamachining.com" target="_blank" class="glass p-5 rounded-xl group block">
-                <h4 class="text-white font-bold mb-1">Larca Machining</h4>
-                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">larcamachining.com</p>
-            </a>
-            <a href="https://unickelinsurance.com" target="_blank" class="glass p-5 rounded-xl group block">
-                <h4 class="text-white font-bold mb-1">Unickel & Associates</h4>
-                <p class="text-[10px] text-[#00f2ff] mono uppercase tracking-tighter">unickelinsurance.com</p>
-            </a>
-        </div>
-    </section>
-
-    <footer id="contact" class="py-24 px-6 border-t border-white/5">
+    <footer id="contact" class="py-24 px-6 border-t border-white/5 bg-black/40">
         <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-3xl font-bold text-white mb-8 tracking-tighter">Maliq Oka</h2>
+            <h2 class="text-3xl font-bold text-white mb-8 tracking-tighter">Connection Portal</h2>
             <div class="flex justify-center gap-12 mb-16">
                 <a href="mailto:maliq.oka123@gmail.com" class="text-gray-400 hover:text-[#00f2ff] transition flex flex-col items-center gap-2">
                     <i data-lucide="mail"></i>
                     <span class="mono text-[9px] uppercase tracking-widest">Email</span>
                 </a>
                 <a href="https://maliqoka.wordpress.com" class="text-gray-400 hover:text-[#00f2ff] transition flex flex-col items-center gap-2">
-                    <i data-lucide="globe"></i>
-                    <span class="mono text-[9px] uppercase tracking-widest">WordPress</span>
+                    <i data-lucide="zap"></i>
+                    <span class="mono text-[9px] uppercase tracking-widest">WP Core</span>
                 </a>
             </div>
             <p class="text-[10px] text-gray-700 mono tracking-[0.5em] uppercase">
-                &copy; 2026 MALIQ OKA // ALL SYSTEMS OPERATIONAL
+                &copy; 2026 MALIQ OKA // DATA MIGRATION COMPLETE
             </p>
         </div>
     </footer>
