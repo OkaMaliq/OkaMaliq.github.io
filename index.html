@@ -1,302 +1,517 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maliq Oka | Full Stack Developer</title>
+    <meta name="description" content="Full Stack Developer specializing in WooCommerce, custom web experiences, and high-performance digital builds. Based in Berlin.">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <style>
         :root { --accent: #00f2ff; --bg: #020202; }
-        body { background-color: var(--bg); color: #a1a1aa; font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
+        body { background: var(--bg); color: #a1a1aa; font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; scroll-behavior: smooth; cursor: none; }
         .mono { font-family: 'JetBrains Mono', monospace; }
-        
-        #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
-        
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .glass:hover { border-color: var(--accent); transform: scale(1.02) translateY(-5px); box-shadow: 0 20px 40px rgba(0, 242, 255, 0.15); }
-        
-        .text-glow { text-shadow: 0 0 20px rgba(0, 242, 255, 0.5); }
-        .hero-gradient { background: linear-gradient(135deg, #fff 30%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
 
-        .floating { animation: float 6s ease-in-out infinite; }
-        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-20px); } 100% { transform: translateY(0px); } }
-    </style>
+```
+    /* CURSOR */
+    #cur { position:fixed; width:10px; height:10px; background:var(--accent); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); mix-blend-mode:screen; transition:width .15s,height .15s; }
+    #cur-ring { position:fixed; width:36px; height:36px; border:1.5px solid rgba(0,242,255,0.5); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:width .15s,height .15s,border-color .15s; }
+    body.hov #cur { width:18px; height:18px; }
+    body.hov #cur-ring { width:54px; height:54px; border-color:var(--accent); }
+
+    #canvas-container { position:fixed; inset:0; z-index:-1; }
+
+    .glass { background:rgba(255,255,255,0.03); backdrop-filter:blur(15px); border:1px solid rgba(255,255,255,0.1); }
+
+    ::-webkit-scrollbar { width:4px; }
+    ::-webkit-scrollbar-thumb { background:var(--accent); border-radius:10px; }
+
+    .floating { animation:float 6s ease-in-out infinite; }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-18px)} }
+
+    .reveal { opacity:0; transform:translateY(36px); transition:opacity .7s ease,transform .7s ease; }
+    .reveal.on { opacity:1; transform:none; }
+    .reveal-l { opacity:0; transform:translateX(-36px); transition:opacity .7s ease,transform .7s ease; }
+    .reveal-l.on { opacity:1; transform:none; }
+    .reveal-r { opacity:0; transform:translateX(36px); transition:opacity .7s ease,transform .7s ease; }
+    .reveal-r.on { opacity:1; transform:none; }
+
+    .hero-grad { background:linear-gradient(135deg,#fff 30%,var(--accent) 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    #tw::after { content:'|'; animation:blink .7s infinite; color:var(--accent); }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    .sbar { height:3px; background:rgba(255,255,255,0.07); border-radius:6px; overflow:hidden; }
+    .sfill { height:100%; background:linear-gradient(90deg,var(--accent),#007aff); border-radius:6px; width:0; transition:width 1.2s cubic-bezier(.4,0,.2,1); }
+
+    #toast { position:fixed; bottom:28px; right:28px; z-index:9999; display:flex; align-items:center; gap:12px; padding:14px 20px; border-radius:16px; background:rgba(10,10,10,0.95); border:1px solid rgba(255,255,255,0.1); backdrop-filter:blur(20px); min-width:240px; transform:translateY(80px); opacity:0; transition:all .4s cubic-bezier(.175,.885,.32,1.275); pointer-events:none; }
+    #toast.show { transform:translateY(0); opacity:1; }
+
+    #intro { position:fixed; inset:0; background:var(--bg); z-index:10000; display:flex; align-items:center; justify-content:center; transition:opacity .8s ease; }
+    #intro.out { opacity:0; pointer-events:none; }
+
+    /* PROJECT CARDS */
+    .pcard {
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.08);
+        background: rgba(255,255,255,0.03);
+        min-height: 160px;
+        transition: border-color .3s, box-shadow .3s, transform .3s;
+        display: flex;
+        flex-direction: column;
+        cursor: none;
+        text-decoration: none;
+    }
+    .pcard:hover {
+        border-color: var(--accent);
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(0,242,255,0.2);
+    }
+    .pcard-img {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: top center;
+        opacity: 0;
+        transition: opacity .4s ease;
+    }
+    .pcard:hover .pcard-img { opacity: 1; }
+    .pcard-shade {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(2,2,2,.95) 35%, rgba(2,2,2,.45));
+        opacity: 0;
+        transition: opacity .4s ease;
+    }
+    .pcard:hover .pcard-shade { opacity: 1; }
+    .pcard-body {
+        position: relative;
+        z-index: 2;
+        padding: 18px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    .pcard-spin {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+    }
+    .spinner { width:18px; height:18px; border:2px solid rgba(0,242,255,.15); border-top-color:var(--accent); border-radius:50%; animation:spin .8s linear infinite; }
+    @keyframes spin { to{transform:rotate(360deg)} }
+
+    /* FILTER BUTTONS */
+    .fbtn {
+        padding: 7px 18px;
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,0.12);
+        font-size: 10px;
+        letter-spacing: .18em;
+        font-family: 'JetBrains Mono', monospace;
+        text-transform: uppercase;
+        color: #6b7280;
+        background: transparent;
+        transition: all .2s;
+        cursor: none;
+        outline: none;
+    }
+    .fbtn:hover { border-color: rgba(0,242,255,.5); color: var(--accent); }
+    .fbtn.active { border-color: var(--accent); color: var(--accent); background: rgba(0,242,255,.08); }
+
+    .pcard[hidden] { display: none !important; }
+
+    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
+</style>
+```
+
 </head>
 <body>
-    <div id="canvas-container"></div>
 
-    <nav class="fixed top-0 w-full z-[100] px-6 md:px-10 py-6 flex justify-between items-center backdrop-blur-xl border-b border-white/10">
-        <a href="#home" class="flex items-center gap-3 group z-[110]">
-            <div class="w-10 h-10 border-2 border-[#00f2ff] flex items-center justify-center rotate-45 group-hover:bg-[#00f2ff] transition-all duration-500 shadow-[0_0_15px_rgba(0,242,255,0.4)]">
-                <span class="text-white -rotate-45 font-bold text-xl group-hover:text-black">M</span>
-            </div>
-            <span class="mono text-white tracking-[0.4em] text-sm font-bold">MALIQ OKA</span>
-        </a>
+<div id="cur"></div>
+<div id="cur-ring"></div>
 
-        <div class="hidden md:flex gap-10 text-[11px] uppercase tracking-[0.3em] mono">
-            <a href="#about" class="hover:text-[#00f2ff] hover:text-glow transition">About</a>
-            <a href="#projects" class="hover:text-[#00f2ff] hover:text-glow transition">Archive</a>
-            <a href="#contact" class="px-5 py-2 border border-[#00f2ff] text-[#00f2ff] hover:bg-[#00f2ff] hover:text-black transition-all rounded-full">Hire Me</a>
+<div id="intro">
+    <div style="text-align:center">
+        <div style="width:56px;height:56px;border:2px solid var(--accent);transform:rotate(45deg);margin:0 auto 20px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 28px rgba(0,242,255,.4)">
+            <span style="color:#fff;font-weight:900;font-size:20px;transform:rotate(-45deg)">M</span>
         </div>
+        <p class="mono" style="color:var(--accent);font-size:10px;letter-spacing:.7em;text-transform:uppercase">Loading</p>
+    </div>
+</div>
 
-        <button id="menu-toggle" class="md:hidden text-white z-[110] p-2">
-            <i data-lucide="menu" id="menu-icon"></i>
-        </button>
+<div id="toast">
+    <div id="t-icon" style="width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0"></div>
+    <span id="t-msg" style="color:#fff;font-size:13px"></span>
+</div>
 
-        <div id="mobile-menu" class="fixed inset-0 bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center gap-8 translate-x-full transition-transform duration-500 md:hidden z-[100]">
-            <a href="#about" class="mobile-link text-3xl font-black text-white tracking-tighter hover:text-[#00f2ff]">ABOUT</a>
-            <a href="#projects" class="mobile-link text-3xl font-black text-white tracking-tighter hover:text-[#00f2ff]">WORK</a>
-            <a href="#contact" class="mobile-link text-3xl font-black text-[#00f2ff] tracking-tighter border border-[#00f2ff] px-8 py-2 rounded-full">HIRE ME</a>
+<div id="canvas-container"></div>
+
+<!-- NAV -->
+
+<nav style="position:fixed;top:0;width:100%;z-index:100;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06);box-sizing:border-box">
+    <a href="#home" style="display:flex;align-items:center;gap:12px;text-decoration:none">
+        <div style="width:38px;height:38px;border:2px solid var(--accent);transform:rotate(45deg);display:flex;align-items:center;justify-content:center;box-shadow:0 0 12px rgba(0,242,255,.3);flex-shrink:0">
+            <span style="color:#fff;font-weight:900;font-size:17px;transform:rotate(-45deg)">M</span>
         </div>
-    </nav>
+        <span class="mono" style="color:#fff;letter-spacing:.4em;font-size:12px;font-weight:700">MALIQ OKA</span>
+    </a>
+    <div style="display:flex;gap:32px;align-items:center" class="mono">
+        <a href="#about" style="color:#6b7280;text-decoration:none;font-size:10px;letter-spacing:.3em;text-transform:uppercase;transition:color .2s" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='#6b7280'">About</a>
+        <a href="#projects" style="color:#6b7280;text-decoration:none;font-size:10px;letter-spacing:.3em;text-transform:uppercase;transition:color .2s" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='#6b7280'">Work</a>
+        <a href="#contact" style="color:var(--accent);border:1px solid var(--accent);padding:7px 22px;border-radius:999px;text-decoration:none;font-size:10px;letter-spacing:.3em;text-transform:uppercase;transition:all .2s" onmouseenter="this.style.background='var(--accent)';this.style.color='#000'" onmouseleave="this.style.background='transparent';this.style.color='var(--accent)'">Hire Me</a>
+    </div>
+</nav>
 
-    <section id="home" class="min-h-screen flex flex-col justify-center items-center px-6 relative text-center">
-        <h2 class="mono text-[#00f2ff] text-sm tracking-[0.8em] mb-4 uppercase floating">2026 Portfolio</h2>
-        <h1 class="text-6xl md:text-[10rem] font-black text-white leading-none tracking-tighter mb-6">
-            FULL STACK<br><span class="hero-gradient text-glow">DEVELOPER</span>
-        </h1>
-        <p class="max-w-xl text-gray-400 text-lg md:text-xl leading-relaxed">
-            Crafting high-performance web experiences, WooCommerce ecosystems, and conceptual prototypes.
-        </p>
-    </section>
+<!-- HERO -->
 
-    <section id="about" class="py-40 px-6 relative">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
-            <div class="relative">
-                <h2 class="text-6xl font-black text-white mb-8 tracking-tighter uppercase">About<br><span class="text-[#00f2ff]">Me</span></h2>
-                <div class="w-24 h-2 bg-[#00f2ff] mb-8 shadow-[0_0_15px_rgba(0,242,255,0.5)]"></div>
-            </div>
-            <div class="space-y-6">
-                <p class="text-2xl md:text-3xl text-white font-light leading-snug">
-                    Hello, I’m <span class="font-bold text-[#00f2ff]">Maliq Oka</span>. Over the years, I’ve had the opportunity to build over <span class="text-white underline decoration-[#00f2ff]">40 prototypes</span>.
-                </p>
-                <p class="text-xl text-gray-400 leading-relaxed">
-                    With 10 of these builds specialized in <strong>WooCommerce</strong>, I focus on creating seamless, user-friendly experiences. From e-commerce to custom digital environments, I specialize in bridging technology with design.
-                </p>
+<section id="home" style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 24px;position:relative">
+    <p class="mono floating reveal" style="color:var(--accent);font-size:10px;letter-spacing:.8em;text-transform:uppercase;margin-bottom:16px">2026 Portfolio</p>
+    <h1 class="reveal" style="font-size:clamp(3rem,10vw,9rem);font-weight:900;color:#fff;line-height:.95;letter-spacing:-.03em;margin-bottom:20px">
+        FULL STACK<br><span class="hero-grad" id="tw">DEVELOPER</span>
+    </h1>
+    <p class="reveal" style="max-width:480px;color:#6b7280;font-size:17px;line-height:1.7;margin-bottom:32px">
+        Crafting high-performance web experiences, WooCommerce ecosystems, and conceptual prototypes.
+    </p>
+    <div class="reveal" style="display:flex;gap:12px">
+        <a href="https://github.com" target="_blank" class="glass" style="width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--accent);text-decoration:none;transition:all .2s" onmouseenter="this.style.background='var(--accent)';this.style.color='#000'" onmouseleave="this.style.background='rgba(255,255,255,.03)';this.style.color='var(--accent)'"><i data-lucide="github" style="width:17px;height:17px"></i></a>
+        <a href="https://linkedin.com" target="_blank" class="glass" style="width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--accent);text-decoration:none;transition:all .2s" onmouseenter="this.style.background='var(--accent)';this.style.color='#000'" onmouseleave="this.style.background='rgba(255,255,255,.03)';this.style.color='var(--accent)'"><i data-lucide="linkedin" style="width:17px;height:17px"></i></a>
+        <a href="mailto:maliq.oka123@gmail.com" class="glass" style="width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--accent);text-decoration:none;transition:all .2s" onmouseenter="this.style.background='var(--accent)';this.style.color='#000'" onmouseleave="this.style.background='rgba(255,255,255,.03)';this.style.color='var(--accent)'"><i data-lucide="mail" style="width:17px;height:17px"></i></a>
+    </div>
+    <a href="#about" style="position:absolute;bottom:36px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#374151;text-decoration:none;transition:color .2s" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='#374151'">
+        <span class="mono" style="font-size:9px;letter-spacing:.4em;text-transform:uppercase">Scroll</span>
+        <i data-lucide="chevron-down" style="width:13px;height:13px;animation:bounce 1.5s ease-in-out infinite"></i>
+    </a>
+</section>
+
+<!-- ABOUT -->
+
+<section id="about" style="padding:140px 40px">
+    <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start">
+        <div class="reveal-l">
+            <h2 style="font-size:clamp(2.5rem,6vw,5rem);font-weight:900;color:#fff;letter-spacing:-.03em;text-transform:uppercase;line-height:1;margin-bottom:20px">About<br><span style="color:var(--accent)">Me</span></h2>
+            <div style="width:72px;height:3px;background:var(--accent);margin-bottom:28px;box-shadow:0 0 12px rgba(0,242,255,.5)"></div>
+            <p style="font-size:clamp(1rem,2vw,1.25rem);color:#fff;font-weight:300;line-height:1.7;margin-bottom:14px">
+                Hello, I'm <strong style="color:var(--accent);font-weight:700">Maliq Oka</strong>. Over the years, I've built over <span style="text-decoration:underline;text-decoration-color:var(--accent)">50 verified projects</span>.
+            </p>
+            <p style="font-size:1rem;color:#6b7280;line-height:1.8">
+                With 10+ builds specialized in <strong style="color:#fff">WooCommerce</strong>, I focus on seamless, user-friendly experiences — from e-commerce ecosystems to custom digital environments. Based in Berlin.
+            </p>
+        </div>
+        <div class="reveal-r">
+            <p class="mono" style="font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--accent);margin-bottom:24px">Tech Stack</p>
+            <div id="skills" style="display:flex;flex-direction:column;gap:18px">
+                <div><div style="display:flex;justify-content:space-between;margin-bottom:7px"><span style="color:#fff;font-size:13px;font-weight:600">WordPress / WooCommerce</span><span class="mono" style="color:var(--accent);font-size:11px">95%</span></div><div class="sbar"><div class="sfill" data-w="95"></div></div></div>
+                <div><div style="display:flex;justify-content:space-between;margin-bottom:7px"><span style="color:#fff;font-size:13px;font-weight:600">PHP / MySQL</span><span class="mono" style="color:var(--accent);font-size:11px">85%</span></div><div class="sbar"><div class="sfill" data-w="85"></div></div></div>
+                <div><div style="display:flex;justify-content:space-between;margin-bottom:7px"><span style="color:#fff;font-size:13px;font-weight:600">JavaScript / React</span><span class="mono" style="color:var(--accent);font-size:11px">80%</span></div><div class="sbar"><div class="sfill" data-w="80"></div></div></div>
+                <div><div style="display:flex;justify-content:space-between;margin-bottom:7px"><span style="color:#fff;font-size:13px;font-weight:600">HTML / CSS / Tailwind</span><span class="mono" style="color:var(--accent);font-size:11px">98%</span></div><div class="sbar"><div class="sfill" data-w="98"></div></div></div>
+                <div><div style="display:flex;justify-content:space-between;margin-bottom:7px"><span style="color:#fff;font-size:13px;font-weight:600">UI/UX Design</span><span class="mono" style="color:var(--accent);font-size:11px">75%</span></div><div class="sbar"><div class="sfill" data-w="75"></div></div></div>
+                <div><div style="display:flex;justify-content:space-between;margin-bottom:7px"><span style="color:#fff;font-size:13px;font-weight:600">SEO / Performance</span><span class="mono" style="color:var(--accent);font-size:11px">88%</span></div><div class="sbar"><div class="sfill" data-w="88"></div></div></div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="projects" class="py-40 px-6 bg-white/[0.01]">
-        <div class="max-w-[1500px] mx-auto">
-            <div class="mb-20 text-center">
-                <h3 class="text-5xl font-black text-white tracking-tighter uppercase">Work Archive</h3>
-                <p class="mono text-xs text-[#00f2ff] mt-4 uppercase tracking-[0.4em]">50 Verified Nodes</p>
-            </div>
-            <div id="project-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+<!-- PROJECTS -->
+
+<section id="projects" style="padding:100px 40px;background:rgba(255,255,255,.01)">
+    <div style="max-width:1500px;margin:0 auto">
+        <div class="reveal" style="text-align:center;margin-bottom:36px">
+            <h3 style="font-size:clamp(2rem,5vw,4rem);font-weight:900;color:#fff;letter-spacing:-.03em;text-transform:uppercase">Work Archive</h3>
+            <p class="mono" style="font-size:10px;color:var(--accent);margin-top:10px;letter-spacing:.4em;text-transform:uppercase">50 Verified Nodes</p>
+        </div>
+        <!-- FILTER -->
+        <div class="reveal" style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:40px" id="fbar">
+            <button class="fbtn active" data-f="all">All</button>
+            <button class="fbtn" data-f="woo">WooCommerce</button>
+            <button class="fbtn" data-f="staging">Staging</button>
+            <button class="fbtn" data-f="nonprofit">Non-Profit</button>
+            <button class="fbtn" data-f="corporate">Corporate</button>
+        </div>
+        <div id="pgrid" style="display:grid;gap:14px"></div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact" style="padding:140px 40px">
+    <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px">
+        <div class="reveal-l">
+            <h3 style="font-size:clamp(2rem,5vw,4rem);font-weight:900;color:#fff;letter-spacing:-.03em;text-transform:uppercase;line-height:1;margin-bottom:48px">Let's<br><span style="color:var(--accent)">Connect</span></h3>
+            <div style="display:flex;flex-direction:column;gap:24px">
+                <div style="display:flex;align-items:center;gap:18px">
+                    <div class="glass" style="width:50px;height:50px;border-radius:13px;display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0"><i data-lucide="map-pin" style="width:18px;height:18px"></i></div>
+                    <div><p class="mono" style="font-size:9px;color:#4b5563;text-transform:uppercase;letter-spacing:.2em;margin-bottom:3px">Location</p><p style="color:#fff;font-size:15px">Berlin, Germany</p></div>
                 </div>
-        </div>
-    </section>
-
-    <section id="contact" class="py-40 px-6 max-w-7xl mx-auto">
-        <div class="grid lg:grid-cols-2 gap-16">
-            <div class="space-y-12">
-                <h3 class="text-6xl font-black text-white tracking-tighter mb-4 uppercase">Let's<br><span class="text-[#00f2ff]">Connect</span></h3>
-                
-                <div class="space-y-8">
-                    <div class="flex items-center gap-6 group">
-                        <div class="w-14 h-14 glass rounded-2xl flex items-center justify-center text-[#00f2ff] group-hover:bg-[#00f2ff] group-hover:text-black transition-all">
-                            <i data-lucide="map-pin"></i>
-                        </div>
-                        <div>
-                            <p class="mono text-[10px] uppercase text-gray-500">Location</p>
-                            <p class="text-white text-lg">Berlin, Germany</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-6 group">
-                        <div class="w-14 h-14 glass rounded-2xl flex items-center justify-center text-[#00f2ff] group-hover:bg-[#00f2ff] group-hover:text-black transition-all">
-                            <i data-lucide="mail"></i>
-                        </div>
-                        <div>
-                            <p class="mono text-[10px] uppercase text-gray-500">Email</p>
-                            <p class="text-white text-lg">maliq.oka123@gmail.com</p>
-                        </div>
-                    </div>
-
+                <div style="display:flex;align-items:center;gap:18px">
+                    <div class="glass" style="width:50px;height:50px;border-radius:13px;display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0"><i data-lucide="mail" style="width:18px;height:18px"></i></div>
+                    <div><p class="mono" style="font-size:9px;color:#4b5563;text-transform:uppercase;letter-spacing:.2em;margin-bottom:3px">Email</p><p style="color:#fff;font-size:15px">maliq.oka123@gmail.com</p></div>
+                </div>
+                <div style="display:flex;align-items:center;gap:18px">
+                    <div class="glass" style="width:50px;height:50px;border-radius:13px;display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0"><i data-lucide="clock" style="width:18px;height:18px"></i></div>
+                    <div><p class="mono" style="font-size:9px;color:#4b5563;text-transform:uppercase;letter-spacing:.2em;margin-bottom:3px">Response Time</p><p style="color:#fff;font-size:15px">Within 24 hours</p></div>
                 </div>
             </div>
-
-            <div class="glass p-10 md:p-14 rounded-[2rem]">
-                <form id="form" class="space-y-6">
-                    <input type="hidden" name="access_key" value="8ced933c-0914-46d5-aabc-a559e61de0b0">
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div class="space-y-2">
-                            <label class="mono text-[10px] uppercase tracking-widest text-[#00f2ff]">Name</label>
-                            <input type="text" name="name" required class="w-full bg-white/5 border border-white/10 p-4 rounded-xl text-white focus:border-[#00f2ff] outline-none">
-                        </div>
-                        <div class="space-y-2">
-                            <label class="mono text-[10px] uppercase tracking-widest text-[#00f2ff]">Email</label>
-                            <input type="email" name="email" required class="w-full bg-white/5 border border-white/10 p-4 rounded-xl text-white focus:border-[#00f2ff] outline-none">
-                        </div>
+        </div>
+        <div class="reveal-r glass" style="padding:44px;border-radius:24px">
+            <div style="display:flex;flex-direction:column;gap:18px">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+                    <div>
+                        <label class="mono" style="font-size:9px;color:var(--accent);text-transform:uppercase;letter-spacing:.2em;display:block;margin-bottom:7px">Name</label>
+                        <input id="fn" type="text" placeholder="Your name" style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);padding:13px;border-radius:10px;color:#fff;outline:none;font-family:'Space Grotesk',sans-serif;font-size:14px;box-sizing:border-box;transition:border-color .2s" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(255,255,255,.1)'">
                     </div>
-                    <div class="space-y-2">
-                        <label class="mono text-[10px] uppercase tracking-widest text-[#00f2ff]">Project Message</label>
-                        <textarea name="message" rows="4" required class="w-full bg-white/5 border border-white/10 p-4 rounded-xl text-white focus:border-[#00f2ff] outline-none"></textarea>
+                    <div>
+                        <label class="mono" style="font-size:9px;color:var(--accent);text-transform:uppercase;letter-spacing:.2em;display:block;margin-bottom:7px">Email</label>
+                        <input id="fe" type="email" placeholder="your@email.com" style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);padding:13px;border-radius:10px;color:#fff;outline:none;font-family:'Space Grotesk',sans-serif;font-size:14px;box-sizing:border-box;transition:border-color .2s" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(255,255,255,.1)'">
                     </div>
-                    <button type="submit" id="submit-btn" class="w-full py-6 bg-[#00f2ff] text-black font-black uppercase tracking-[0.2em] text-xs hover:shadow-[0_0_30px_rgba(0,242,255,0.4)] transition-all rounded-xl">
-                        Send Transmission
-                    </button>
-                </form>
+                </div>
+                <div>
+                    <label class="mono" style="font-size:9px;color:var(--accent);text-transform:uppercase;letter-spacing:.2em;display:block;margin-bottom:7px">Message</label>
+                    <textarea id="fm" rows="5" placeholder="Tell me about your project..." style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);padding:13px;border-radius:10px;color:#fff;outline:none;font-family:'Space Grotesk',sans-serif;font-size:14px;box-sizing:border-box;resize:none;transition:border-color .2s" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(255,255,255,.1)'"></textarea>
+                </div>
+                <button id="sbtn" style="width:100%;padding:18px;background:var(--accent);color:#000;font-weight:900;font-size:11px;letter-spacing:.2em;text-transform:uppercase;border:none;border-radius:12px;cursor:none;transition:box-shadow .2s;font-family:'Space Grotesk',sans-serif" onmouseenter="this.style.boxShadow='0 0 28px rgba(0,242,255,.5)'" onmouseleave="this.style.boxShadow='none'">
+                    Send Transmission
+                </button>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <footer class="py-20 text-center border-t border-white/5">
-        <p class="mono text-[10px] text-gray-600 uppercase tracking-[1em]">Maliq Oka &copy; 2026 Berlin</p>
-    </footer>
+<footer style="padding:50px;text-align:center;border-top:1px solid rgba(255,255,255,.04)">
+    <p class="mono" style="font-size:10px;color:#374151;letter-spacing:1em;text-transform:uppercase">Maliq Oka © 2026 Berlin</p>
+</footer>
 
-    <script>
-        // --- 3D ENGINE ---
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.getElementById('canvas-container').appendChild(renderer.domElement);
+<script>
+// INTRO
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        const el = document.getElementById('intro');
+        el.classList.add('out');
+        setTimeout(() => el.remove(), 900);
+    }, 1100);
+});
 
-        const starGeo = new THREE.BufferGeometry();
-        const starCoords = [];
-        for(let i=0; i<4000; i++) {
-            starCoords.push((Math.random()-0.5)*2000, (Math.random()-0.5)*2000, (Math.random()-0.5)*2000);
-        }
-        starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starCoords, 3));
-        const starMat = new THREE.PointsMaterial({ color: 0x00f2ff, size: 0.8, transparent: true, opacity: 0.5 });
-        const stars = new THREE.Points(starGeo, starMat);
-        scene.add(stars);
+// CURSOR
+const cur = document.getElementById('cur');
+const ring = document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e => {
+    mx=e.clientX; my=e.clientY;
+    cur.style.left=mx+'px'; cur.style.top=my+'px';
+});
+(function loopR(){
+    rx+=(mx-rx)*.13; ry+=(my-ry)*.13;
+    ring.style.left=rx+'px'; ring.style.top=ry+'px';
+    requestAnimationFrame(loopR);
+})();
+function addHov(el){ el.addEventListener('mouseenter',()=>document.body.classList.add('hov')); el.addEventListener('mouseleave',()=>document.body.classList.remove('hov')); }
+document.querySelectorAll('a,button').forEach(addHov);
 
-        const torusKnot = new THREE.Mesh(
-            new THREE.TorusKnotGeometry(12, 4, 120, 20),
-            new THREE.MeshBasicMaterial({ color: 0x00f2ff, wireframe: true, transparent: true, opacity: 0.04 })
-        );
-        scene.add(torusKnot);
-        camera.position.z = 60;
+// THREE.JS
+const scene=new THREE.Scene();
+const cam=new THREE.PerspectiveCamera(75,innerWidth/innerHeight,0.1,1000);
+const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
+renderer.setSize(innerWidth,innerHeight);
+document.getElementById('canvas-container').appendChild(renderer.domElement);
+const sg=new THREE.BufferGeometry();
+const sc=[];
+for(let i=0;i<4000;i++) sc.push((Math.random()-.5)*2000,(Math.random()-.5)*2000,(Math.random()-.5)*2000);
+sg.setAttribute('position',new THREE.Float32BufferAttribute(sc,3));
+const stars=new THREE.Points(sg,new THREE.PointsMaterial({color:0x00f2ff,size:.8,transparent:true,opacity:.4}));
+scene.add(stars);
+const tk=new THREE.Mesh(new THREE.TorusKnotGeometry(12,4,120,20),new THREE.MeshBasicMaterial({color:0x00f2ff,wireframe:true,transparent:true,opacity:.03}));
+scene.add(tk); cam.position.z=60;
+let pmx=0,pmy=0;
+document.addEventListener('mousemove',e=>{pmx=(e.clientX/innerWidth-.5)*2;pmy=(e.clientY/innerHeight-.5)*2;});
+(function loop(){
+    requestAnimationFrame(loop);
+    stars.rotation.y+=.0003; tk.rotation.x+=.001; tk.rotation.y+=.001;
+    cam.position.x+=(pmx*4-cam.position.x)*.025;
+    cam.position.y+=(-pmy*4-cam.position.y)*.025;
+    renderer.render(scene,cam);
+})();
+window.addEventListener('resize',()=>{ cam.aspect=innerWidth/innerHeight; cam.updateProjectionMatrix(); renderer.setSize(innerWidth,innerHeight); });
 
-        function animate() {
-            requestAnimationFrame(animate);
-            stars.rotation.y += 0.0003;
-            torusKnot.rotation.x += 0.001;
-            torusKnot.rotation.y += 0.001;
-            renderer.render(scene, camera);
-        }
-        animate();
+// TYPEWRITER
+const words=['DEVELOPER','BUILDER','CREATOR','ENGINEER'];
+let wi=0,ci=0,del=false;
+const tw=document.getElementById('tw');
+function type(){
+    const w=words[wi];
+    tw.textContent=del?w.slice(0,--ci):w.slice(0,++ci);
+    if(!del&&ci===w.length){del=true;setTimeout(type,2000);return;}
+    if(del&&ci===0){del=false;wi=(wi+1)%words.length;}
+    setTimeout(type,del?55:110);
+}
+setTimeout(type,1600);
 
-        // --- MOBILE MENU LOGIC ---
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuIcon = document.getElementById('menu-icon');
-        let isMenuOpen = false;
+// SCROLL REVEAL
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>{
+    new IntersectionObserver(([e])=>{ if(e.isIntersecting) el.classList.add('on'); },{threshold:.1}).observe(el);
+});
 
-        menuToggle.addEventListener('click', () => {
-            isMenuOpen = !isMenuOpen;
-            mobileMenu.style.transform = isMenuOpen ? 'translateX(0)' : 'translateX(100%)';
-            menuIcon.setAttribute('data-lucide', isMenuOpen ? 'x' : 'menu');
-            lucide.createIcons();
-            document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+// SKILL BARS
+new IntersectionObserver(([e])=>{
+    if(e.isIntersecting) document.querySelectorAll('.sfill').forEach(b=>b.style.width=b.dataset.w+'%');
+},{threshold:.3}).observe(document.getElementById('skills'));
+
+// TOAST
+function toast(msg,ok=true){
+    const t=document.getElementById('toast');
+    const ic=document.getElementById('t-icon');
+    document.getElementById('t-msg').textContent=msg;
+    ic.style.background=ok?'rgba(0,242,255,.12)':'rgba(255,60,60,.12)';
+    ic.innerHTML=ok
+        ?`<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#00f2ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`
+        :`<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ff4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+    t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),4000);
+}
+
+// FORM
+document.getElementById('sbtn').addEventListener('click',async()=>{
+    const n=document.getElementById('fn').value.trim();
+    const e=document.getElementById('fe').value.trim();
+    const m=document.getElementById('fm').value.trim();
+    if(!n||!e||!m){toast('Please fill all fields.',false);return;}
+    const btn=document.getElementById('sbtn');
+    btn.textContent='Sending...'; btn.disabled=true;
+    const fd=new FormData();
+    fd.append('access_key','8ced933c-0914-46d5-aabc-a559e61de0b0');
+    fd.append('name',n); fd.append('email',e); fd.append('message',m);
+    try{
+        const r=await fetch('https://api.web3forms.com/submit',{method:'POST',body:fd});
+        if(r.ok){toast("Message sent! I'll be in touch soon.");document.getElementById('fn').value='';document.getElementById('fe').value='';document.getElementById('fm').value='';}
+        else toast('Something went wrong. Try again.',false);
+    }catch{toast('Network error. Please try again.',false);}
+    finally{btn.textContent='Send Transmission';btn.disabled=false;}
+});
+
+// PROJECTS DATA
+const projects=[
+    {n:"Above All Eco Clean",   u:"aboveallecoclean.hostpapadesign.com",           tags:["staging"]},
+    {n:"Ahtran Scripts",        u:"ahtranscripts.com",                             tags:["corporate"]},
+    {n:"All Green Energy",      u:"allgreenergy.ca",                               tags:["corporate"]},
+    {n:"AllProbe Environmental",u:"allprobeenvironmental.com",                     tags:["corporate"]},
+    {n:"ARC Wealth Options",    u:"arcwealthoptions.ca",                           tags:["corporate"]},
+    {n:"Atelier East Design",   u:"ateliereastdesign.com",                         tags:["corporate"]},
+    {n:"Ausilon",               u:"ausilon.hostpapadesign.com",                    tags:["staging"]},
+    {n:"Best Hair Extension",   u:"besthairextensions.hostpapadesign.com",         tags:["woo","staging"]},
+    {n:"Bruce Campbell Author", u:"brucecampbellauthor.com",                       tags:["corporate"]},
+    {n:"Bruce Campbell Staging",u:"brucecampbellauthor.hostpapadesign.com",        tags:["staging"]},
+    {n:"CATAPULT",              u:"catapultsearch.com",                            tags:["corporate"]},
+    {n:"Corporate Video",       u:"torontocameramanservices2.hostpapadesign.com",  tags:["staging"]},
+    {n:"Dare to Rise",          u:"daretorisefoundation.org",                      tags:["nonprofit"]},
+    {n:"Delisle Dental",        u:"delisledentalsk.ca",                            tags:["corporate"]},
+    {n:"Doctors Hub",           u:"doctorshub.ca",                                 tags:["corporate"]},
+    {n:"Ecotech Saunas",        u:"ecotechsaunas.com",                             tags:["woo"]},
+    {n:"Ecotech Staging",       u:"ecotechsaunas.hostpapadesign.com",              tags:["staging","woo"]},
+    {n:"Elevate Strengths",     u:"elevatestrengths.com",                          tags:["corporate"]},
+    {n:"Elevate Staging",       u:"elevatestrengths.hostpapadesign.com",           tags:["staging"]},
+    {n:"Factor Ten",            u:"factorten.hostpapadesign.com",                  tags:["staging"]},
+    {n:"Freedom Prosthetics",   u:"freedomprosthetics.ca",                         tags:["corporate"]},
+    {n:"Gymnastics Mississauga",u:"gymmississauga.hostpapadesign.com",             tags:["staging","nonprofit"]},
+    {n:"Hampden Diner PA",      u:"hampdendinerpa.com",                            tags:["woo"]},
+    {n:"Hunter Valley Cheese",  u:"huntervalleycheese.hostpapadesign.com",         tags:["staging","woo"]},
+    {n:"ICONICK Project",       u:"iconickinc.com",                                tags:["corporate"]},
+    {n:"Jayr Memorials",        u:"jayrmemorials.com",                             tags:["woo"]},
+    {n:"Larca Machining",       u:"larcamachining.hostpapadesign.com",             tags:["staging","corporate"]},
+    {n:"Legaltech LLC",         u:"legaltech-llc.com",                             tags:["corporate"]},
+    {n:"Les Treize Inc.",       u:"lestreizeinc.org",                              tags:["nonprofit"]},
+    {n:"Lost Time Mgmt",        u:"losttimemanagement.com",                        tags:["corporate"]},
+    {n:"Mathison Capital",      u:"mathisoncapital.ca",                            tags:["corporate"]},
+    {n:"Michael Kent Author",   u:"kentwriter.com",                                tags:["corporate"]},
+    {n:"Sew Helpful",           u:"sewhelpful.hostpapadesign.com",                 tags:["staging","woo"]},
+    {n:"North Shore Repair",    u:"nsrestore.ca",                                  tags:["corporate"]},
+    {n:"Palazzo Interiors",     u:"palazzointeriors.com",                          tags:["corporate"]},
+    {n:"PBG Canada",            u:"pbgcanada.ca",                                  tags:["corporate"]},
+    {n:"Perinatal Psychotherapy",u:"perinatalpsychotherapy.ca",                    tags:["corporate"]},
+    {n:"Potash Global",         u:"potash.eu",                                     tags:["corporate"]},
+    {n:"Premier Fluid Systems", u:"pfspumps.com",                                  tags:["corporate"]},
+    {n:"Re-Lit",                u:"re-lit.com.au",                                 tags:["woo"]},
+    {n:"Roswell Community",     u:"roswell.hostpapadesign.com",                    tags:["staging","nonprofit"]},
+    {n:"Sports Numbers",        u:"sportsnumbers.ca",                              tags:["woo"]},
+    {n:"Saffron Specialties",   u:"squirrelgullysaffron.hostpapadesign.com",       tags:["staging","woo"]},
+    {n:"Sunset Point",          u:"sunsetpoint.ca",                                tags:["corporate"]},
+    {n:"The Crossliminal Way",  u:"thecrossliminalway.com",                        tags:["corporate"]},
+    {n:"Jewish Community",      u:"besthighholydayservices.com",                   tags:["nonprofit"]},
+    {n:"Quiet Clean Alliance",  u:"quietcleanalliance.org",                        tags:["nonprofit"]},
+    {n:"Unickel Insurance",     u:"unickelinsurance.com",                          tags:["corporate"]},
+    {n:"Wilmington Head Start", u:"wilmheadstart.org",                             tags:["nonprofit"]},
+    {n:"Wolff Media",           u:"wolffmediagrp.com",                             tags:["corporate"]}
+];
+
+// WordPress mshots — free, no API key, direct image URL, works from any browser
+function shotUrl(domain){
+    return 'https://s.wordpress.com/mshots/v1/'+encodeURIComponent('https://'+domain)+'?w=600&h=400';
+}
+
+// BUILD GRID
+const grid=document.getElementById('pgrid');
+grid.innerHTML=projects.map((p,i)=>`
+    <a href="https://${p.u}" target="_blank" rel="noopener"
+       class="pcard" data-tags="${p.tags.join(',')}" id="pc${i}">
+        <div class="pcard-spin" id="sp${i}"><div class="spinner"></div></div>
+        <div class="pcard-img" id="pi${i}"></div>
+        <div class="pcard-shade"></div>
+        <div class="pcard-body">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${p.n}</h4>
+            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">${p.u}</p>
+            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
+                ${p.tags.map(t=>`<span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">${t}</span>`).join('')}
+            </div>
+        </div>
+    </a>
+`).join('');
+
+// Hook hover events for cursor + screenshot
+const loaded=new Set();
+document.querySelectorAll('.pcard').forEach((card,i)=>{
+    addHov(card);
+    card.addEventListener('mouseenter',()=>{
+        if(loaded.has(i)) return;
+        loaded.add(i);
+        const imgEl=document.getElementById('pi'+i);
+        const spEl=document.getElementById('sp'+i);
+        const url=shotUrl(projects[i].u);
+        const img=new Image();
+        img.onload=()=>{ imgEl.style.backgroundImage=`url('${url}')`;  if(spEl)spEl.style.display='none'; };
+        img.onerror=()=>{ if(spEl)spEl.style.display='none'; };
+        img.src=url;
+    });
+});
+
+// FILTER
+document.querySelectorAll('.fbtn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+        document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        const f=btn.dataset.f;
+        document.querySelectorAll('.pcard').forEach(card=>{
+            const match = f==='all' || card.dataset.tags.split(',').includes(f);
+            card.hidden = !match;
         });
+    });
+});
 
-        document.querySelectorAll('.mobile-link').forEach(link => {
-            link.addEventListener('click', () => {
-                isMenuOpen = false;
-                mobileMenu.style.transform = 'translateX(100%)';
-                menuIcon.setAttribute('data-lucide', 'menu');
-                lucide.createIcons();
-                document.body.style.overflow = '';
-            });
-        });
+lucide.createIcons();
 
-        // --- FORM LOGIC ---
-        const form = document.getElementById('form');
-        const submitBtn = document.getElementById('submit-btn');
+// RESPONSIVE GRID
+function setGrid(){
+    const c=innerWidth<640?2:innerWidth<900?3:innerWidth<1200?4:5;
+    grid.style.gridTemplateColumns=`repeat(${c},1fr)`;
+}
+setGrid();
+window.addEventListener('resize',setGrid);
+</script>
 
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const formData = new FormData(form);
-            submitBtn.textContent = "SENDING...";
-            submitBtn.disabled = true;
-
-            try {
-                const response = await fetch("https://api.web3forms.com/submit", { method: "POST", body: formData });
-                if (response.ok) { alert("Success! Message sent."); form.reset(); } 
-                else { alert("Error sending."); }
-            } catch (err) { alert("Network error."); }
-            finally { submitBtn.textContent = "SEND TRANSMISSION"; submitBtn.disabled = false; }
-        });
-
-        // --- PROJECTS ---
-        const projects = [
-            { n: "Above All Eco Clean", u: "aboveallecoclean.hostpapadesign.com" },
-            { n: "Ahtran scripts", u: "ahtranscripts.com" },
-            { n: "All Green Energy", u: "allgreenergy.ca" },
-            { n: "AllProbe Environmental", u: "allprobeenvironmental.com" },
-            { n: "ARC WEALTH OPTIONS", u: "arcwealthoptions.ca" },
-            { n: "Atelier East Design", u: "ateliereastdesign.com" },
-            { n: "Ausilon", u: "ausilon.hostpapadesign.com" },
-            { n: "BEST HAIR EXTENSION", u: "besthairextensions.hostpapadesign.com" },
-            { n: "brucecampbellauthor", u: "brucecampbellauthor.com" },
-            { n: "brucecampbell staging", u: "brucecampbellauthor.hostpapadesign.com" },
-            { n: "CATAPULT", u: "catapultsearch.com" },
-            { n: "Corporate Video", u: "torontocameramanservices2.hostpapadesign.com" },
-            { n: "Dare to Rise", u: "daretorisefoundation.org" },
-            { n: "Delisle Dental", u: "delisledentalsk.ca" },
-            { n: "Doctors hub", u: "doctorshub.ca" },
-            { n: "ecotechsaunas", u: "ecotechsaunas.com" },
-            { n: "ecotechsaunas staging", u: "ecotechsaunas.hostpapadesign.com" },
-            { n: "Elevate Strengths", u: "elevatestrengths.com" },
-            { n: "Elevate staging", u: "elevatestrengths.hostpapadesign.com" },
-            { n: "Factor Ten", u: "factorten.hostpapadesign.com" },
-            { n: "Freedom Prosthetics", u: "freedomprosthetics.ca" },
-            { n: "Gymnastics Mississauga", u: "gymmississauga.hostpapadesign.com" },
-            { n: "hampdendinerpa", u: "hampdendinerpa.com" },
-            { n: "Hunter Valley Cheese", u: "huntervalleycheese.hostpapadesign.com" },
-            { n: "ICONICK Project", u: "iconickinc.com" },
-            { n: "jayrmemorials", u: "jayrmemorials.com" },
-            { n: "Larca Machining", u: "larcamachining.hostpapadesign.com" },
-            { n: "legaltech-llc", u: "legaltech-llc.com" },
-            { n: "Les Treize, Inc.", u: "lestreizeinc.org" },
-            { n: "Lost time management", u: "losttimemanagement.com" },
-            { n: "Mathison Capital", u: "mathisoncapital.ca" },
-            { n: "Michael Kent Author", u: "kentwriter.com" },
-            { n: "Sew Helpful", u: "sewhelpful.hostpapadesign.com" },
-            { n: "North Shore Repair", u: "nsrestore.ca" },
-            { n: "Palazzo Interiors", u: "palazzointeriors.com" },
-            { n: "PBGCanada", u: "pbgcanada.ca" },
-            { n: "Perinatal Psychotherapy", u: "perinatalpsychotherapy.ca" },
-            { n: "Potash Global", u: "potash.eu" },
-            { n: "Premier Fluid Systems", u: "pfspumps.com" },
-            { n: "Re-Lit", u: "re-lit.com.au" },
-            { n: "Roswell Community", u: "roswell.hostpapadesign.com" },
-            { n: "Sports Numbers", u: "sportsnumbers.ca" },
-            { n: "Saffron Specialties", u: "squirrelgullysaffron.hostpapadesign.com" },
-            { n: "sunsetpoint", u: "sunsetpoint.ca" },
-            { n: "The Crossliminal Way", u: "thecrossliminalway.com" },
-            { n: "Jewish Community", u: "besthighholydayservices.com" },
-            { n: "Quiet Clean Alliance", u: "quietcleanalliance.org" },
-            { n: "Unickel Insurance", u: "unickelinsurance.com" },
-            { n: "WILMINGTON HEAD START", u: "wilmheadstart.org" },
-            { n: "Wolffmedia", u: "wolffmediagrp.com" }
-        ];
-
-        document.getElementById('project-grid').innerHTML = projects.map(p => `
-            <a href="https://${p.u}" target="_blank" class="glass p-6 rounded-2xl block group relative">
-                <i data-lucide="external-link" class="w-4 h-4 text-[#00f2ff]/30 group-hover:text-[#00f2ff] transition-colors mb-4"></i>
-                <h4 class="text-white font-bold text-xs mb-2 group-hover:text-[#00f2ff] transition-colors truncate uppercase">${p.n}</h4>
-                <p class="text-[9px] text-gray-600 mono truncate lowercase">${p.u}</p>
-            </a>
-        `).join('');
-
-        lucide.createIcons();
-
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-    </script>
 </body>
 </html>
