@@ -1,4 +1,6 @@
-<html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maliq Oka | Full Stack Developer</title>
@@ -6,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <style>
         :root { --accent: #00f2ff; --bg: #020202; }
         body { background: var(--bg); color: #a1a1aa; font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
@@ -57,60 +59,33 @@
         #intro { position:fixed; inset:0; background:var(--bg); z-index:10000; display:flex; align-items:center; justify-content:center; transition:opacity .8s ease; }
         #intro.out { opacity:0; pointer-events:none; }
 
-        /* PROJECT CARDS */
+        /* PROJECT CARDS - Simplified, no image loading */
         .pcard {
             position: relative;
             border-radius: 16px;
             overflow: hidden;
             border: 1px solid rgba(255,255,255,0.08);
             background: rgba(255,255,255,0.03);
-            min-height: 160px;
+            min-height: 140px;
             transition: border-color .3s, box-shadow .3s, transform .3s;
             display: flex;
             flex-direction: column;
             text-decoration: none;
+            padding: 20px;
         }
         .pcard:hover {
             border-color: var(--accent);
             transform: translateY(-5px) scale(1.02);
             box-shadow: 0 20px 40px rgba(0,242,255,0.2);
+            background: rgba(0,242,255,0.05);
         }
-        .pcard-img {
-            position: absolute;
-            inset: 0;
-            background-size: cover;
-            background-position: top center;
-            opacity: 0;
-            transition: opacity .4s ease;
-        }
-        .pcard:hover .pcard-img { opacity: 1; }
-        .pcard-shade {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(2,2,2,.95) 35%, rgba(2,2,2,.45));
-            opacity: 0;
-            transition: opacity .4s ease;
-        }
-        .pcard:hover .pcard-shade { opacity: 1; }
         .pcard-body {
             position: relative;
             z-index: 2;
-            padding: 18px;
             flex: 1;
             display: flex;
             flex-direction: column;
         }
-        .pcard-spin {
-            position: absolute;
-            inset: 0;
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            pointer-events: none;
-        }
-        .spinner { width:18px; height:18px; border:2px solid rgba(0,242,255,.15); border-top-color:var(--accent); border-radius:50%; animation:spin .8s linear infinite; }
-        @keyframes spin { to{transform:rotate(360deg)} }
 
         /* FILTER BUTTONS */
         .fbtn {
@@ -143,23 +118,21 @@
             #projects { padding: 60px 20px !important; }
         }
     </style>
+<base target="_blank">
 </head>
 <body>
 
 <div id="cur"></div>
 <div id="cur-ring"></div>
 
-
-
 <div id="toast">
     <div id="t-icon" style="width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0"></div>
     <span id="t-msg" style="color:#fff;font-size:13px"></span>
 </div>
 
-<div id="canvas-container"><canvas width="390" height="658" style="display: block; width: 390px; height: 658px;"></canvas></div>
+<div id="canvas-container"></div>
 
 <!-- NAV -->
-
 <nav style="position:fixed;top:0;width:100%;z-index:100;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06);box-sizing:border-box">
     <a href="#home" style="display:flex;align-items:center;gap:12px;text-decoration:none">
         <div style="width:38px;height:38px;border:2px solid var(--accent);transform:rotate(45deg);display:flex;align-items:center;justify-content:center;box-shadow:0 0 12px rgba(0,242,255,.3);flex-shrink:0">
@@ -175,7 +148,6 @@
 </nav>
 
 <!-- HERO -->
-
 <section id="home" style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 24px;position:relative">
     <p class="mono floating reveal on" style="color:var(--accent);font-size:10px;letter-spacing:.8em;text-transform:uppercase;margin-bottom:16px">2026 Portfolio</p>
     <h1 class="reveal on" style="font-size:clamp(3rem,10vw,9rem);font-weight:900;color:#fff;line-height:.95;letter-spacing:-.03em;margin-bottom:20px">
@@ -184,10 +156,10 @@
     <p class="reveal on" style="max-width:480px;color:#6b7280;font-size:17px;line-height:1.7;margin-bottom:32px">
         Crafting high-performance web experiences, WooCommerce ecosystems, and conceptual prototypes.
     </p>
+    <!-- Only Email and LinkedIn -->
     <div class="reveal on" style="display:flex;gap:12px">
-        <a href="https://github.com" target="_blank" class="glass" style="width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--accent);text-decoration:none;transition:all .2s" onmouseenter="this.style.background='var(--accent)';this.style.color='#000'" onmouseleave="this.style.background='rgba(255,255,255,.03)';this.style.color='var(--accent)'"><i data-lucide="github" style="width:17px;height:17px"></i></a>
-        <a href="https://linkedin.com" target="_blank" class="glass" style="width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--accent);text-decoration:none;transition:all .2s" onmouseenter="this.style.background='var(--accent)';this.style.color='#000'" onmouseleave="this.style.background='rgba(255,255,255,.03)';this.style.color='var(--accent)'"><i data-lucide="linkedin" style="width:17px;height:17px"></i></a>
         <a href="mailto:maliq.oka123@gmail.com" class="glass" style="width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--accent);text-decoration:none;transition:all .2s" onmouseenter="this.style.background='var(--accent)';this.style.color='#000'" onmouseleave="this.style.background='rgba(255,255,255,.03)';this.style.color='var(--accent)'"><i data-lucide="mail" style="width:17px;height:17px"></i></a>
+        <a href="https://www.linkedin.com/in/maliq-oka-707041137/" target="_blank" class="glass" style="width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--accent);text-decoration:none;transition:all .2s" onmouseenter="this.style.background='var(--accent)';this.style.color='#000'" onmouseleave="this.style.background='rgba(255,255,255,.03)';this.style.color='var(--accent)'"><i data-lucide="linkedin" style="width:17px;height:17px"></i></a>
     </div>
     <a href="#about" style="position:absolute;bottom:36px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#374151;text-decoration:none;transition:color .2s" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='#374151'">
         <span class="mono" style="font-size:9px;letter-spacing:.4em;text-transform:uppercase">Scroll</span>
@@ -196,7 +168,6 @@
 </section>
 
 <!-- ABOUT -->
-
 <section id="about" style="padding:140px 40px">
     <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start">
         <div class="reveal-l on">
@@ -212,19 +183,18 @@
         <div class="reveal-r on">
             <p class="mono" style="font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--accent);margin-bottom:24px">Tech Stack</p>
             <div id="skills" style="display:flex;flex-direction:column;gap:18px">
-                <div><div style="display:flex;justify-content:space-between;margin-bottom:7px"><span style="color:#fff;font-size:13px;font-weight:600">WordPress / WooCommerce</span><span class="mono" style="color:var(--accent);font-size:11px">95%</span></div><div class="sbar"><div class="sfill" data-w="95" style="width: 95%;"></div></div></div>
-                <div><div style="display:flex;justify-content:space-between;margin-bottom:7px"><span style="color:#fff;font-size:13px;font-weight:600">PHP / MySQL</span><span class="mono" style="color:var(--accent);font-size:11px">85%</span></div><div class="sbar"><div class="sfill" data-w="85" style="width: 85%;"></div></div></div>
-                <div><div style="display:flex;justify-content:space-between;margin-bottom:7px"><span style="color:#fff;font-size:13px;font-weight:600">JavaScript / React</span><span class="mono" style="color:var(--accent);font-size:11px">80%</span></div><div class="sbar"><div class="sfill" data-w="80" style="width: 80%;"></div></div></div>
-                <div><div style="display:flex;justify-content:space-between;margin-bottom:7px"><span style="color:#fff;font-size:13px;font-weight:600">HTML / CSS / Tailwind</span><span class="mono" style="color:var(--accent);font-size:11px">98%</span></div><div class="sbar"><div class="sfill" data-w="98" style="width: 98%;"></div></div></div>
-                <div><div style="display:flex;justify-content:space-between;margin-bottom:7px"><span style="color:#fff;font-size:13px;font-weight:600">UI/UX Design</span><span class="mono" style="color:var(--accent);font-size:11px">75%</span></div><div class="sbar"><div class="sfill" data-w="75" style="width: 75%;"></div></div></div>
-                <div><div style="display:flex;justify-content:space-between;margin-bottom:7px"><span style="color:#fff;font-size:13px;font-weight:600">SEO / Performance</span><span class="mono" style="color:var(--accent);font-size:11px">88%</span></div><div class="sbar"><div class="sfill" data-w="88" style="width: 88%;"></div></div></div>
+                <div><div style="display:flex;justify-content:space-between;margin-bottom:7px"><span style="color:#fff;font-size:13px;font-weight:600">WordPress / WooCommerce</span><span class="mono" style="color:var(--accent);font-size:11px">95%</span></div><div class="sbar"><div class="sfill" data-w="95"></div></div></div>
+                <div><div style="display:flex;justify-content:space-between;margin-bottom:7px"><span style="color:#fff;font-size:13px;font-weight:600">PHP / MySQL</span><span class="mono" style="color:var(--accent);font-size:11px">85%</span></div><div class="sbar"><div class="sfill" data-w="85"></div></div></div>
+                <div><div style="display:flex;justify-content:space-between;margin-bottom:7px"><span style="color:#fff;font-size:13px;font-weight:600">JavaScript / React</span><span class="mono" style="color:var(--accent);font-size:11px">80%</span></div><div class="sbar"><div class="sfill" data-w="80"></div></div></div>
+                <div><div style="display:flex;justify-content:space-between;margin-bottom:7px"><span style="color:#fff;font-size:13px;font-weight:600">HTML / CSS / Tailwind</span><span class="mono" style="color:var(--accent);font-size:11px">98%</span></div><div class="sbar"><div class="sfill" data-w="98"></div></div></div>
+                <div><div style="display:flex;justify-content:space-between;margin-bottom:7px"><span style="color:#fff;font-size:13px;font-weight:600">UI/UX Design</span><span class="mono" style="color:var(--accent);font-size:11px">75%</span></div><div class="sbar"><div class="sfill" data-w="75"></div></div></div>
+                <div><div style="display:flex;justify-content:space-between;margin-bottom:7px"><span style="color:#fff;font-size:13px;font-weight:600">SEO / Performance</span><span class="mono" style="color:var(--accent);font-size:11px">88%</span></div><div class="sbar"><div class="sfill" data-w="88"></div></div></div>
             </div>
         </div>
     </div>
 </section>
 
 <!-- PROJECTS -->
-
 <section id="projects" style="padding:100px 40px;background:rgba(255,255,255,.01)">
     <div style="max-width:1500px;margin:0 auto">
         <div class="reveal on" style="text-align:center;margin-bottom:36px">
@@ -239,586 +209,11 @@
             <button class="fbtn" data-f="nonprofit">Non-Profit</button>
             <button class="fbtn" data-f="corporate">Corporate</button>
         </div>
-        <div id="pgrid" style="display:grid;gap:14px">
-    <a href="https://aboveallecoclean.hostpapadesign.com" target="_blank" rel="noopener" class="pcard" data-tags="staging" id="pc0">
-        <div class="pcard-spin" id="sp0" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi0" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Faboveallecoclean.hostpapadesign.com?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Above All Eco Clean</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">aboveallecoclean.hostpapadesign.com</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">staging</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://ahtranscripts.com" target="_blank" rel="noopener" class="pcard" data-tags="corporate" id="pc1">
-        <div class="pcard-spin" id="sp1" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi1" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Fahtranscripts.com?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Ahtran Scripts</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">ahtranscripts.com</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">corporate</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://allprobeenvironmental.com" target="_blank" rel="noopener" class="pcard" data-tags="corporate" id="pc2">
-        <div class="pcard-spin" id="sp2" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi2" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Fallprobeenvironmental.com?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">AllProbe Environmental</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">allprobeenvironmental.com</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">corporate</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://arcwealthoptions.ca" target="_blank" rel="noopener" class="pcard" data-tags="corporate" id="pc3">
-        <div class="pcard-spin" id="sp3" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi3" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Farcwealthoptions.ca?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">ARC Wealth Options</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">arcwealthoptions.ca</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">corporate</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://ateliereastdesign.com" target="_blank" rel="noopener" class="pcard" data-tags="corporate" id="pc4">
-        <div class="pcard-spin" id="sp4" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi4" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Fateliereastdesign.com?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Atelier East Design</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">ateliereastdesign.com</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">corporate</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://ausilon.hostpapadesign.com" target="_blank" rel="noopener" class="pcard" data-tags="staging" id="pc5">
-        <div class="pcard-spin" id="sp5" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi5" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Fausilon.hostpapadesign.com?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Ausilon</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">ausilon.hostpapadesign.com</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">staging</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://brucecampbellauthor.com" target="_blank" rel="noopener" class="pcard" data-tags="corporate" id="pc6">
-        <div class="pcard-spin" id="sp6" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi6" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Fbrucecampbellauthor.com?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Bruce Campbell Author</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">brucecampbellauthor.com</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">corporate</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://brucecampbellauthor.hostpapadesign.com" target="_blank" rel="noopener" class="pcard" data-tags="staging" id="pc7">
-        <div class="pcard-spin" id="sp7" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi7" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Fbrucecampbellauthor.hostpapadesign.com?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Bruce Campbell Staging</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">brucecampbellauthor.hostpapadesign.com</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">staging</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://catapultsearch.com" target="_blank" rel="noopener" class="pcard" data-tags="corporate" id="pc8">
-        <div class="pcard-spin" id="sp8" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi8" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Fcatapultsearch.com?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">CATAPULT</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">catapultsearch.com</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">corporate</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://torontocameramanservices2.hostpapadesign.com" target="_blank" rel="noopener" class="pcard" data-tags="staging" id="pc9">
-        <div class="pcard-spin" id="sp9" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi9" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Ftorontocameramanservices2.hostpapadesign.com?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Corporate Video</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">torontocameramanservices2.hostpapadesign.com</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">staging</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://daretorisefoundation.org" target="_blank" rel="noopener" class="pcard" data-tags="nonprofit" id="pc10">
-        <div class="pcard-spin" id="sp10" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi10" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Fdaretorisefoundation.org?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Dare to Rise</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">daretorisefoundation.org</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">nonprofit</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://delisledentalsk.ca" target="_blank" rel="noopener" class="pcard" data-tags="corporate" id="pc11">
-        <div class="pcard-spin" id="sp11" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi11" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Fdelisledentalsk.ca?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Delisle Dental</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">delisledentalsk.ca</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">corporate</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://doctorshub.ca" target="_blank" rel="noopener" class="pcard" data-tags="corporate" id="pc12">
-        <div class="pcard-spin" id="sp12" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi12" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Fdoctorshub.ca?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Doctors Hub</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">doctorshub.ca</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">corporate</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://ecotechsaunas.com" target="_blank" rel="noopener" class="pcard" data-tags="woo" id="pc13">
-        <div class="pcard-spin" id="sp13" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi13" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Fecotechsaunas.com?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Ecotech Saunas</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">ecotechsaunas.com</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">woo</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://ecotechsaunas.hostpapadesign.com" target="_blank" rel="noopener" class="pcard" data-tags="staging,woo" id="pc14">
-        <div class="pcard-spin" id="sp14" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi14" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Fecotechsaunas.hostpapadesign.com?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Ecotech Staging</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">ecotechsaunas.hostpapadesign.com</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">staging</span><span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">woo</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://elevatestrengths.com" target="_blank" rel="noopener" class="pcard" data-tags="corporate" id="pc15">
-        <div class="pcard-spin" id="sp15" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi15" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Felevatestrengths.com?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Elevate Strengths</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">elevatestrengths.com</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">corporate</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://elevatestrengths.hostpapadesign.com" target="_blank" rel="noopener" class="pcard" data-tags="staging" id="pc16">
-        <div class="pcard-spin" id="sp16" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi16" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Felevatestrengths.hostpapadesign.com?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Elevate Staging</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">elevatestrengths.hostpapadesign.com</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">staging</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://factorten.hostpapadesign.com" target="_blank" rel="noopener" class="pcard" data-tags="staging" id="pc17">
-        <div class="pcard-spin" id="sp17" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi17" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Ffactorten.hostpapadesign.com?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Factor Ten</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">factorten.hostpapadesign.com</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">staging</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://freedomprosthetics.ca" target="_blank" rel="noopener" class="pcard" data-tags="corporate" id="pc18">
-        <div class="pcard-spin" id="sp18" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi18" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Ffreedomprosthetics.ca?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Freedom Prosthetics</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">freedomprosthetics.ca</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">corporate</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://gymmississauga.hostpapadesign.com" target="_blank" rel="noopener" class="pcard" data-tags="staging,nonprofit" id="pc19">
-        <div class="pcard-spin" id="sp19" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi19" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Fgymmississauga.hostpapadesign.com?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Gymnastics Mississauga</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">gymmississauga.hostpapadesign.com</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">staging</span><span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">nonprofit</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://hampdendinerpa.com" target="_blank" rel="noopener" class="pcard" data-tags="woo" id="pc20">
-        <div class="pcard-spin" id="sp20" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi20" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Fhampdendinerpa.com?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Hampden Diner PA</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">hampdendinerpa.com</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">woo</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://huntervalleycheese.hostpapadesign.com" target="_blank" rel="noopener" class="pcard" data-tags="staging,woo" id="pc21">
-        <div class="pcard-spin" id="sp21" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi21" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Fhuntervalleycheese.hostpapadesign.com?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Hunter Valley Cheese</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">huntervalleycheese.hostpapadesign.com</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">staging</span><span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">woo</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://jayrmemorials.com" target="_blank" rel="noopener" class="pcard" data-tags="woo" id="pc22">
-        <div class="pcard-spin" id="sp22" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi22" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Fjayrmemorials.com?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Jayr Memorials</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">jayrmemorials.com</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">woo</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://larcamachining.hostpapadesign.com" target="_blank" rel="noopener" class="pcard" data-tags="staging,corporate" id="pc23">
-        <div class="pcard-spin" id="sp23" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi23" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Flarcamachining.hostpapadesign.com?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Larca Machining</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">larcamachining.hostpapadesign.com</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">staging</span><span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">corporate</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://legaltech-llc.com" target="_blank" rel="noopener" class="pcard" data-tags="corporate" id="pc24">
-        <div class="pcard-spin" id="sp24" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi24" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Flegaltech-llc.com?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Legaltech LLC</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">legaltech-llc.com</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">corporate</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://lestreizeinc.org" target="_blank" rel="noopener" class="pcard" data-tags="nonprofit" id="pc25">
-        <div class="pcard-spin" id="sp25" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi25" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Flestreizeinc.org?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Les Treize Inc.</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">lestreizeinc.org</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">nonprofit</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://losttimemanagement.com" target="_blank" rel="noopener" class="pcard" data-tags="corporate" id="pc26">
-        <div class="pcard-spin" id="sp26" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi26" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Flosttimemanagement.com?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Lost Time Mgmt</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">losttimemanagement.com</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">corporate</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://kentwriter.com" target="_blank" rel="noopener" class="pcard" data-tags="corporate" id="pc27">
-        <div class="pcard-spin" id="sp27" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi27" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Fkentwriter.com?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Michael Kent Author</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">kentwriter.com</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">corporate</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://sewhelpful.hostpapadesign.com" target="_blank" rel="noopener" class="pcard" data-tags="staging,woo" id="pc28">
-        <div class="pcard-spin" id="sp28" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi28" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Fsewhelpful.hostpapadesign.com?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Sew Helpful</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">sewhelpful.hostpapadesign.com</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">staging</span><span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">woo</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://nsrestore.ca" target="_blank" rel="noopener" class="pcard" data-tags="corporate" id="pc29">
-        <div class="pcard-spin" id="sp29" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi29" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Fnsrestore.ca?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">North Shore Repair</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">nsrestore.ca</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">corporate</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://palazzointeriors.com" target="_blank" rel="noopener" class="pcard" data-tags="corporate" id="pc30">
-        <div class="pcard-spin" id="sp30" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi30" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Fpalazzointeriors.com?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Palazzo Interiors</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">palazzointeriors.com</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">corporate</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://pbgcanada.ca" target="_blank" rel="noopener" class="pcard" data-tags="corporate" id="pc31">
-        <div class="pcard-spin" id="sp31" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi31" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Fpbgcanada.ca?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">PBG Canada</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">pbgcanada.ca</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">corporate</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://perinatalpsychotherapy.ca" target="_blank" rel="noopener" class="pcard" data-tags="corporate" id="pc32">
-        <div class="pcard-spin" id="sp32" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi32" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Fperinatalpsychotherapy.ca?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Perinatal Psychotherapy</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">perinatalpsychotherapy.ca</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">corporate</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://potash.eu" target="_blank" rel="noopener" class="pcard" data-tags="corporate" id="pc33">
-        <div class="pcard-spin" id="sp33" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi33" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Fpotash.eu?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Potash Global</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">potash.eu</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">corporate</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://pfspumps.com" target="_blank" rel="noopener" class="pcard" data-tags="corporate" id="pc34">
-        <div class="pcard-spin" id="sp34" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi34" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Fpfspumps.com?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Premier Fluid Systems</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">pfspumps.com</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">corporate</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://re-lit.com.au" target="_blank" rel="noopener" class="pcard" data-tags="woo" id="pc35">
-        <div class="pcard-spin" id="sp35" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi35" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Fre-lit.com.au?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Re-Lit</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">re-lit.com.au</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">woo</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://roswell.hostpapadesign.com" target="_blank" rel="noopener" class="pcard" data-tags="staging,nonprofit" id="pc36">
-        <div class="pcard-spin" id="sp36" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi36" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Froswell.hostpapadesign.com?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Roswell Community</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">roswell.hostpapadesign.com</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">staging</span><span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">nonprofit</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://sportsnumbers.ca" target="_blank" rel="noopener" class="pcard" data-tags="woo" id="pc37">
-        <div class="pcard-spin" id="sp37" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi37" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Fsportsnumbers.ca?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Sports Numbers</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">sportsnumbers.ca</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">woo</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://sunsetpoint.ca" target="_blank" rel="noopener" class="pcard" data-tags="corporate" id="pc38">
-        <div class="pcard-spin" id="sp38" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi38" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Fsunsetpoint.ca?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Sunset Point</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">sunsetpoint.ca</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">corporate</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://unickelinsurance.com" target="_blank" rel="noopener" class="pcard" data-tags="corporate" id="pc39">
-        <div class="pcard-spin" id="sp39" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi39" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Funickelinsurance.com?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Unickel Insurance</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">unickelinsurance.com</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">corporate</span>
-            </div>
-        </div>
-    </a>
-
-    <a href="https://wilmheadstart.org" target="_blank" rel="noopener" class="pcard" data-tags="nonprofit" id="pc40">
-        <div class="pcard-spin" id="sp40" style="display: none;"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi40" style="background-image: url(&quot;https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwilmheadstart.org?w=600&amp;h=400&quot;);"></div>
-        <div class="pcard-shade"></div>
-        <div class="pcard-body">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Wilmington Head Start</h4>
-            <p style="font-size:9px;color:#4b5563;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px">wilmheadstart.org</p>
-            <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:auto">
-                <span style="font-size:7px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;padding:2px 7px;border-radius:999px;border:1px solid rgba(0,242,255,.2);color:rgba(0,242,255,.55)">nonprofit</span>
-            </div>
-        </div>
-    </a>
-</div>
+        <div id="pgrid" style="display:grid;gap:14px"></div>
     </div>
 </section>
 
 <!-- CONTACT -->
-
 <section id="contact" style="padding:140px 40px">
     <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px">
         <div class="reveal-l">
@@ -831,6 +226,10 @@
                 <div style="display:flex;align-items:center;gap:18px">
                     <div class="glass" style="width:50px;height:50px;border-radius:13px;display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0"><i data-lucide="mail" style="width:18px;height:18px"></i></div>
                     <div><p class="mono" style="font-size:9px;color:#4b5563;text-transform:uppercase;letter-spacing:.2em;margin-bottom:3px">Email</p><p style="color:#fff;font-size:15px">maliq.oka123@gmail.com</p></div>
+                </div>
+                <div style="display:flex;align-items:center;gap:18px">
+                    <div class="glass" style="width:50px;height:50px;border-radius:13px;display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0"><i data-lucide="linkedin" style="width:18px;height:18px"></i></div>
+                    <div><p class="mono" style="font-size:9px;color:#4b5563;text-transform:uppercase;letter-spacing:.2em;margin-bottom:3px">LinkedIn</p><a href="https://www.linkedin.com/in/maliq-oka-707041137/" target="_blank" style="color:#fff;font-size:15px;text-decoration:none;transition:color .2s" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='#fff'">linkedin.com/in/maliq-oka</a></div>
                 </div>
                 <div style="display:flex;align-items:center;gap:18px">
                     <div class="glass" style="width:50px;height:50px;border-radius:13px;display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0"><i data-lucide="clock" style="width:18px;height:18px"></i></div>
@@ -875,8 +274,10 @@ window.addEventListener('load', () => {
     window.scrollTo(0, 0);
     setTimeout(() => {
         const el = document.getElementById('intro');
-        el.classList.add('out');
-        setTimeout(() => el.remove(), 900);
+        if(el) {
+            el.classList.add('out');
+            setTimeout(() => el.remove(), 900);
+        }
     }, 1100);
 });
 
@@ -978,7 +379,7 @@ document.getElementById('sbtn').addEventListener('click',async()=>{
     finally{btn.textContent='Send Transmission';btn.disabled=false;}
 });
 
-// PROJECTS DATA (41 working sites - 9 broken removed)
+// PROJECTS DATA (41 working sites)
 const projects=[
     {n:"Above All Eco Clean",   u:"aboveallecoclean.hostpapadesign.com",           tags:["staging"]},
     {n:"Ahtran Scripts",        u:"ahtranscripts.com",                             tags:["corporate"]},
@@ -1023,24 +424,11 @@ const projects=[
     {n:"Wilmington Head Start", u:"wilmheadstart.org",                             tags:["nonprofit"]}
 ];
 
-// Use multiple screenshot services for better reliability
-function shotUrl(domain){
-    // Try microlink first (more reliable), fallback to WordPress mshots
-    return 'https://api.microlink.io/?url=https://'+encodeURIComponent(domain)+'&screenshot=true&meta=false&embed=screenshot.url';
-}
-
-function fallbackShotUrl(domain){
-    return 'https://s.wordpress.com/mshots/v1/'+encodeURIComponent('https://'+domain)+'?w=600&h=400';
-}
-
-// BUILD GRID
+// BUILD GRID - Simplified cards without screenshot loading
 const grid=document.getElementById('pgrid');
 grid.innerHTML=projects.map((p,i)=>`
     <a href="https://${p.u}" target="_blank" rel="noopener"
        class="pcard" data-tags="${p.tags.join(',')}" id="pc${i}">
-        <div class="pcard-spin" id="sp${i}"><div class="spinner"></div></div>
-        <div class="pcard-img" id="pi${i}"></div>
-        <div class="pcard-shade"></div>
         <div class="pcard-body">
             <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(0,242,255,.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:9px;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             <h4 style="color:#fff;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${p.n}</h4>
@@ -1052,54 +440,13 @@ grid.innerHTML=projects.map((p,i)=>`
     </a>
 `).join('');
 
-// Hook hover events for cursor + screenshot
-const loaded=new Set();
-document.querySelectorAll('.pcard').forEach((card,i)=>{
-    if (!isTouchDevice) {
-        card.addEventListener('mouseenter',()=>{
-            if(loaded.has(i)) return;
-            loaded.add(i);
-            const imgEl=document.getElementById('pi'+i);
-            const spEl=document.getElementById('sp'+i);
-            const url=shotUrl(projects[i].u);
-            const fallbackUrl=fallbackShotUrl(projects[i].u);
-            
-            // Try microlink first
-            fetch(url)
-                .then(r => r.json())
-                .then(data => {
-                    if (data.data && data.data.screenshot && data.data.screenshot.url) {
-                        imgEl.style.backgroundImage=`url('${data.data.screenshot.url}')`;
-                        if(spEl) spEl.style.display='none';
-                    } else {
-                        throw new Error('No screenshot');
-                    }
-                })
-                .catch(() => {
-                    // Fallback to WordPress mshots
-                    const img=new Image();
-                    img.onload=()=>{ 
-                        imgEl.style.backgroundImage=`url('${fallbackUrl}')`;  
-                        if(spEl) spEl.style.display='none'; 
-                    };
-                    img.onerror=()=>{ if(spEl) spEl.style.display='none'; };
-                    img.src=fallbackUrl;
-                });
-        });
+// Add hover effects for cursor
+if (!isTouchDevice) {
+    document.querySelectorAll('.pcard').forEach(card => {
         card.addEventListener('mouseenter',()=>document.body.classList.add('hov'));
         card.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
-    } else {
-        // On touch devices, load images immediately without spinner
-        const imgEl=document.getElementById('pi'+i);
-        const spEl=document.getElementById('sp'+i);
-        if(spEl) spEl.style.display='none';
-        
-        const fallbackUrl=fallbackShotUrl(projects[i].u);
-        const img=new Image();
-        img.onload=()=>{ imgEl.style.backgroundImage=`url('${fallbackUrl}')`; };
-        img.src=fallbackUrl;
-    }
-});
+    });
+}
 
 // FILTER
 document.querySelectorAll('.fbtn').forEach(btn=>{
@@ -1117,7 +464,6 @@ document.querySelectorAll('.fbtn').forEach(btn=>{
 lucide.createIcons();
 
 // RESPONSIVE GRID
-// Mobile: 2 per row | Tablet: 3 per row | Desktop: 3 per row (larger cards) | Large: 4 per row
 function setGrid(){
     const c=innerWidth<640?2:innerWidth<1024?3:innerWidth<1400?3:4;
     grid.style.gridTemplateColumns=`repeat(${c},1fr)`;
@@ -1126,6 +472,5 @@ setGrid();
 window.addEventListener('resize',setGrid);
 </script>
 
-
-
-</body></html>
+</body>
+</html>
